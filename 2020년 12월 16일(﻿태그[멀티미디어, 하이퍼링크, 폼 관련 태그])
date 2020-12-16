@@ -1,0 +1,399 @@
+2020년 12월 16일
+
+
+전체정렬 
+Ctrl+K+F
+
+
+* 오디오 태그
+- <audio></audio>
+웹 브라우저에서 플러그인(별도의 확장 프로그램)의 도움 없이 음악을 재생할 수 있게 만들어주는 태그
+
+오디오태그 캡쳐 추가
+
+- 속성 (오디오 바로 재생될지 안될지 옵션을 통해 제어되도록)
+src, controls, autoplay, loop, preload
+
+오디오태그 속성 캡쳐 추가
+
+- 브라우저 별 사용 가능한 파일
+
+오디오태그 브라우저별 캡쳐 추가
+각각의 확장자에 따라서 브라우저에서 지원하는게 다름
+
+
+* 비디오 태그
+- <video></video>
+웹 브라우저에서 플러그인의 도움 없이 미디어 재생 할 수 있게 만들어주는 태그
+
+비디오태그 캡쳐 추가
+
+- 속성
+src : 미디어 파일의 경로 지정
+controls : 재생 도구 출력 지정
+autoplay : 자동 재생 여부 지정(모바일에서 적용X)
+loop : 반복 여부 지정
+preload : 재생 시 모두 불러올 지 지정
+poster : 재생 전 출력할 이미지 출력 / 경로 입력
+width, height : 너비, 높이 지정 
+
+
+------------------------------------------------------------------------------------------------------
+
+하이퍼링크 태그
+
+* 하이퍼 텍스트
+- <a></a>
+페이지에서 해당 부분을 클릭하면 지정된 페이지로 이동하는 태그로
+외부 사이트 연결, 문서 내부에서 이동 가능
+
+- 속성
+href : 링크한 페이지의 id값이나 사이트 주소 지정 (내가 어디로 이동할지 경로지정해줌)
+target : 링크 페이지가 표시될 위치(새 창, 현재 창) 지정
+download : 링크한 페이지를 표시하지 않고 다운로드 하는 것
+rel : 현재 페이지와의 관계 지정
+hreflang : 링크한 페이지의 언어 지정
+type : 페이지의 파일 유형 지정
+
+- 문자
+문자를 클릭했을 때 주소로 가게 하려면
+< ahref="주소">
+	링크 표시 문구
+</a>
+
+
+<a> TAG
+href 속성
+	절대 URL : href="http://www.naver.com"
+	상대 URL : href="login.html"
+	요소의 ID : href="#contents" (contents라는 이름의 id를 가진 콘텐츠가 있음)
+	다른 프로토콜 : http라는 프로토콜을 사용중임, 하지만 다른 서비를 사용하기 위한 프로토콜도 있음
+		href = "ftp://..."
+	스크립트 : href="javascript:..."
+target 속성
+	_self : 클릭한 곳과 동일한 프레임에서 열기(기본값)
+	_blanck : 새 창이나 새 탭에서 열기
+	_parent : 부모 프레임에서 열기
+	_top : 창 전체에서 열기(최상위 프레임)
+	framename: 지정한 프레임에서 열기
+
+
+- 이미지
+이미지를 클릭했을 때 주소로 가게 하려면
+<a href="주소">
+	<img src="이미지 경로"/>
+</a>
+
+* 내부 이동 및 target 이용
+- 내부에서 이동하기
+<p id="p1"></p>
+
+<a href="#p1">
+	링크 표시 문구
+</a>
+
+- target 이용하기
+<a href="주소" target="_black(새 창)" or "_self(현재)"
+		or "_parent(상위 창)" or "_top(최상위창)">
+</a>
+
+
+
+------------------------------------------------------------------------------------------------------
+
+폼 관련 태그
+동적인 기능을 구현하기 위해 사용하는 태그
+동적인 페이지 = 사용자가 입력하는 값에 따라 똑같은걸 클릭하더라도 그때그때 상황에 따라 다른 페이지가 뜨는 것
+정적인페이지 = 미리 어떤 페이지 뜰지 다 정해놓는 것
+
+사용자가 입력을 하게 해주고 싶음
+어떤 입력 어떤입력 하세요 하면서 가이드를 줘야함
+양식을 지정해주는 것이 폼태그
+
+
+
+* <form></form>
+사용자가 입력한 data를 보내는 방식과 처리할 프로그램을 정하는 태그
+사용자가 어떤식으로 입력을 할지 양식을 정해주는 것
+
+- 속성
+method : 데이터 전달 방식을 결정
+   GET 방식(기본값) : URL에 데이터를 포함시켜서 보내는 방식, data크기에 제한이 있음(256~4096byte), data를 볼 수 있음
+   POST : HTTP Message Body 부분에 데이터를 포함시켜서 보내는 방식, data 크기에 제한이 없음, data를 볼 수 없음
+
+name : <form> 태그의 고유 이름 지정, <form>을 구분하기 위해 사용
+action : 양식(데이터)를 처리 할 프로그램(페이지)을 지정
+target : action 속성의 프로그램(페이지)를 어떻게 열지 지정
+autocomplete : 이전 입력내용 출력하는 기능, 생략하면 자동으로 출력(default: on)
+
+id (전역속성)
+class (전역속성)
+name (특정태그들에서만 사용가능한 속성, 반드시 name으로 불러줘야는 애들도 있음)
+
+
+
+* <fieldset></fieldset>,<legend></legend>
+폼 요소를 그룹으로 묶고 묶은 요소에 명칭을 붙이는 태그
+
+<form action="프로그램(페이지)" method="방식">
+               <fieldset name="이름">
+                             <legend>명칭<legend>
+                             <input type...>
+               </fieldset>
+</form>
+
+
+- 속성
+name : fieldset의 이름 지정
+form : fieldset이 속한 form의 이름 지정
+
+* input
+사용자로부터 data를 입력 받기 위한 태그
+
+- 속성
+type : 입력 창의 타입을 결정하는 속성(text, checkbox, radio 등), 내가 어떤걸로 할건지
+value : input요소의 기본 값 표시
+name : input을 구별할 수 있는 명칭, 각각의 상자마다 이름 붙이는 것
+min/max/step : 허용하는 범위 최소값/최대값/값의 증감값
+autocomplete : 자동 완성 기능
+height/width : 입력 창의 높이와 너비
+readonly : 읽기 전용 필드
+accept : 파일 타입에 대해 사용자에게 알려주는 기능
+multiple : 여러 개의 값 입력 가능
+placeholder : 사용자 입력 전 입력 창 표시 글
+autofocus : 입력 창 커서 표시
+required : 필수 입력 필드 지정
+list : <datalist>의 옵션 값을 <input>안에 나열
+maxlength : 사용자가 입력할 수 있는 글자수 제한
+size : 화면에서 표시하는 글자 수
+minlength : 최소 입력 글자(최신 크롬, 안드로이만 지원)
+formaction : 실행할 프로그램 연결, submit/image일 때 사용
+formenctype : 전송 시 어떤 방식으로 해석할 지 지정, submit/image일 때 사용
+formnovalidate : 전송 시 데이터가 유효한지 여부 표시
+formtarget : 서버의 응답을 어디에 표시할 것인지 지정
+
+
+- type 기본 속성
+text : 한 줄 짜리 텍스트 입력 창이 생김
+password : 비밀 번호 입력 창, 입력시 ●●●으로 표시
+hidden : 사용자에게 보이지는 않지만 값을 넣을 수 있는 창, 관리자에게 필요한 값을 넣을 때 사용
+button : 버튼 생성, 자체 별도 기능은 없고 스크립트에서 함수 연결하여 활용
+checkbox : 체크 박스 생성
+file : 파일 입력 양식 출력
+image : 이미지 형태 생성
+radio : 라디오 버튼 생성
+submit : 입력한 데이터를 다른 페이지로 넘기는 기능
+reset : 입력한 내용을 지우는 기능
+
+- hidden
+<input type=hidden name="명칭" value="값">
+존재하지만 사용자에게는 보이지 않음, 감춰줌, 숨김상태로 값을 넘겨주고 싶을 때
+감춰서 전달을 할거라면 사용자에게 입력을 받진 않을것임
+그렇기 때문에 전달할 데이터를 미리 value에 넣어둬야 한다.
+- hidden 속성
+name : hidden type 구분자, 명칭
+value : hidden에 들어갈 값 설정
+
+- text
+문자열 형태의 데이터 입력
+<input type=text name="명칭" value="값" size="숫자" maxlength="숫자">
+- text 속성
+name : text type 구분자, 명칭
+value : text에 들어갈 값 설정, 설정하지 않으면 빈 값
+size : 사용자 화면에 보여줄 문자 개수
+maxlength : 총 입력받은 개수 
+
+- password
+사용자에게 보여지지 않을 내용
+텍스트 형태로 입력받아서 전달을 해주긴 하지만 사용자에게 보여질때는 별표나 동그라미로 보여진다.
+<input type=password name="명칭" minlength="숫자" maxlength="숫자">
+- password 속성
+name : password type 구분자, 명칭
+minlength : password에 들어갈 최소 문자 수
+maxlength : password에 들어갈 최대 문자 수
+
+- button
+버튼을 클릭하면 어떠한 동적인 기능을 수행하도록 해야 한다.
+<input type=button id="명칭" value="값" onclick="스크립트함수">
+- button 속성
+id : id type 구분자, name은 중복 가능, id는 중복 불가
+value : button에 표시될 값 설정
+event : 자바스크립트 불러올 행동(예: onclick)
+
+- checkbox/radio
+<input type=checkbox/radio name="명칭" value="값" [checked]>
+checked는 들어갈 수도 있고 안들어갈 수도 있다.
+- checkbox/radio 속성
+name : 구분자, 명칭, 같은 그룹은 값이 같아야 함
+value : 전송 시 전달할 값
+checked : 처음에 선택될 값 지정(default: 지정 안됨)
+checkbox 다중 선택 가능
+radiobox 한개만 선택 가능, 묶을때 같은 이름을 사용해야 한다.
+
+- file
+<input type=file name="명칭" [multiple]>
+- file 속성
+multiple : 파일 다중 선택 가능
+
+- image
+<input type="image" name/id="명칭" src="경로" alt="대체문자">
+- image 속성
+name/id : type이름
+src : 출력할 이미지 경로 지정
+
+- submit/reset
+<input type=submit/reset id="명칭" vlue="입력/취소">
+- submit/reset 속성
+value : button에 표시될 값
+
+
+* <label></label>
+
+<form> 요소에 레이블(명칭)을 붙이기 위한 태그
+레이블 : 입력 창 옆에 붙여 놓는 문구(예: 비밀번호, 아이디 등)
+
+<label> 명칭 <input...></label>
+
+<label for="id이름">명칭</label>
+<input id="id이름" tyep="타입">
+
+- 속성
+for : label로 묶을 id
+from : label이 속한 from의 id
+
+
+* type HTML5 양식 태그
+- 속성
+color : 색상 선택 양식 출력
+date : 년, 월, 일 선택 양식 생성
+datetime : 년, 월, 일 시간 입력할 수 있는 창 출력
+datetime-local : 년, 월, 일 시간 선택 양식 생성
+time : 시간을 선택하는 양식 생성
+month : 년, 월 선택 양식 생성
+week : 주 선택하는 양식 생성
+number: 숫자를 입력하는 창 출력
+range : 슬라이드 막대로 숫자 지정
+search : 검색어 입력하는 창 출력, 입력 후 X버튼이 생김
+tel : 전화번호를 입력하는 창 출력 (컴퓨터가 자동으로 번호임을 인식)
+email : 자동으로 @을 확인하는 입력 양식
+url : 주소 값을 입력하는 창 출력 (http://가 들어가있는지 확인)
+
+* type 종류
+- color
+<input type="color" nam="명칭" value="색상 값">
+- 속성
+value : 초기 색상 지정
+
+
+- time
+<input type="time" id="명칭" value="시간">
+- 속성
+id/name : 구분자, 이름지정
+value : 초기 표현 값
+
+- number/range
+<input type="number/range" id="명칭" min="숫자" max="숫자" step="숫자" value="숫자">
+- 속성
+min :  최소 표시 숫자 지정
+max : 최대 표시 숫자 지정
+step : 숫자 간격 지정
+value : 초기 표현 값
+
+- search/url/email
+<input type="search/url/email" id="명칭" value="초기값">
+- 속성
+id/name : 구분자, 이름 지정
+value : 초기 표현 값
+
+
+* 여러 값 표현 태그
+- select : 드롭다운 목록으로 값을 입력
+option : list에서 옵션값으로 지정 (드롭다운 목록에 들어가는 값)
+optgroup : list 목록을 그룹으로 묶을 때 사용
+datalist : input태그에서 리스트 형식으로 할 때 사용
+textarea : 여러 줄 입력하는 테스트 영역
+
+* 태그 종류
+- <select></select>와 <option></option>
+<select size="숫자" id="">
+	<option value="값">표시내용</option>
+	<option value="값">표시내용</option>
+	<option value="값 select>표시내용</option>
+</select>
+
+- select 속성
+size : 화면에 표시될 항목 개수 지정
+multiple : 여러 항목 선택 지정, ctrl 누른 상태에서 선택
+
+- option 속성
+value : 옵션 선택 시 넘겨질 값
+selected : 기본으로 선택된 값
+
+- <optgroup></optgroup>
+<select size="숫자" id="">
+	<optgroup lebel="목록이름">
+		<option value="값">표시 내용</option>
+		<option value="값">표시 내용</option>
+	</optgroup>
+	<optgroup lebel="목록이름">
+		<option value="값>표시 내용</option>
+		<option value="값">표시 내용</option>
+	</optgroup>
+</select> 
+
+- 속성
+label : 목록 제목으로 출력될 내용
+
+
+- <datalist></datalist>와 <option></option>
+<input type="text" id="" list ="datalist id 값">
+<datalist id="">
+	<option value="값" labe="명칭"></option>
+	<option value="값" labe="명칭"></option>
+</datalist>
+
+- datalist 속성
+size : 화면에 표시될 항목 개수 지정
+multiple : 여러 항목 선택 지정, ctrl 누른 상태에서 선택
+
+- option 속성
+value : 옵션 선택 시 넘겨질 값
+selected : 기본으로 선택된 값
+
+- <progress></progress>
+작업 진행 상태를 나타내는 태그
+<progress value="숫자" max="숫자"></progress>
+- 속성
+value : 화면에 표시될 항목 개수 지정
+max : 최대값
+
+
+- <meter></meter>
+값이 차지하는 크기 표시
+<meter value="값" min="값" max="값></meter>
+- 속성
+value : 화면에 표시될 항목 개수 지정
+max/min : 범위의 최대/최소 값
+low/hig : 낮/높다고 할 정도의 값 지정
+optimum : 적당하다 할 정도의 값 지정
+
+* button태그를 이용한 fron 제출
+<form>
+	<button type="submit" or "reset" class="명칭" id="">
+	</button>
+</form>
+
+(type="submit"은 CSS를 이용하여 자유롭게 꾸밀 수 없음)
+
+
+* <iframe></iframe>
+
+웹 문서 안에 다른 웹 페이지를 추가하는 태그
+<div class="content">
+	<iframe width="크기" height="크기" src="경로"></iframe>
+</div>
+
+- 속성
+width/height : 페이지 크기 설정
+name : 인라인 프레임 이름
+src : 페이지 경로
