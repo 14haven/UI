@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            div{
+                border: 1px solid black;
+                box-sizing: border-box;
+            }
+            #wrapper{
+                width: 300px;
+                height: 100px;
+            }
+            #login-contents{
+                width: 100%;
+                height: 70%;
+            }
+
+            #join-contents{
+                width: 100%;
+                height: 30%;
+                text-align : center;
+            }
+            #login-write{
+                float:left;
+                width: 70%;
+                height: 100%;
+            }
+            #login-submit{
+                float: left;
+                width: 30%;
+                height: 100%;
+                padding : 5px;
+            }
+            #id-write{
+                width: 100%;
+                height: 50%;
+            }
+            #pw-write{
+                width: 100%;
+                height: 50%;
+            }
+            #login-write input{
+            width : 100%;
+            height : 100%;
+            box-sizing:border-box;
+        }
+            #login-submit>input{
+            width : 100%;
+            height : 100%;
+        }
+
+
+
+
+            
+           
+
+        </style>
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="login-contents">
+                <div id="login-write">
+                    <div id="id-write">
+                        <input type="text" placeholder="ID를 입력하세요.">
+                    </div>
+                    <div id="pw-write">
+                        <input type="text" placeholder="PW를 입력하세요.">
+                    </div>
+                </div>
+                <div id="login-submit">
+                    <input type="submit" value="로그인">
+                </div>
+            </div>
+            <div id="join-contents">
+                <a href="#">회원가입</a>
+                <a href="#">ID/PW 찾기</a>
+            </div>
+        </div>
+    </body>
+</html>

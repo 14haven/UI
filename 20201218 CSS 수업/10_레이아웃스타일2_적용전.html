@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <title>레이아웃스타일2</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            border-width: 3px;
+            
+        }
+
+        .border-test1{ /* 기본값 */
+             border-style: none;
+        } 
+        .border-test2{ /* 감추기, 그림자 */
+            border-style: hidden;
+            box-shadow: 5px 5px 3px 2px gray;
+        }
+        .border-test3{ /* 점선 */
+            border-style: dotted;
+        }
+        .border-test4{ /* dotted보다 긴 점선, 위에만 블루 */
+            border-style: dashed;
+            border-top-color:blue;
+        }
+        .border-test5{ /* 이중선, 컬러는 블루 */
+            border-style:double;
+            border-color: blue;
+        }
+        .border-test6{ /* 왼쪽 위 곡선, 기울기 50px*/
+            border-style:groove;
+            border-top-left-radius: 50px;
+        }
+        .border-test7{ /* 안으로 들어오게, 오른쪽 아래 동글게 */
+            border-style:inset;
+            border-bottom-right-radius: 50px;
+        }
+        .border-test8{ /* 바깥으로 나오게, 양쪽으로 둥글게 */ 
+            border-style:outset;
+            border-top-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            
+        }
+        .border-test9{ /* 테두리가 튀어나온 것 처럼, 그림자 */
+            border-style: ridge;
+            box-shadow: 5px 5px 3px 2px gray;
+        }
+        .border-test10{ /* 실선, 그림자 */
+            border-style: solid;
+            box-shadow: 5px 5px 3px 2px gray;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>테두리 스타일</h1>
+    <h3>border-style:none</h3>
+    <div class="border-test1"></div>
+    <h3>border-style:hidden & box-shadow:5px 5px 3px 2px gray</h3>
+    <div class="border-test2"></div>
+    <h3>border-style:dotted</h3>
+    <div class="border-test3"></div>
+    <h3>border-style:dashed & border-top-color:blue</h3>
+    <div class="border-test4"></div>
+    <h3>border-style:double & border-color:blue</h3>
+    <div class="border-test5"></div>
+    <h3>border-style:groove & border-top-left-radius:50px</h3>
+    <div class="border-test6"></div>
+    <h3>border-style:inset & border-bottom-right-radius:50px</h3>
+    <div class="border-test7"></div>
+    <h3>border-style:outset & border-top-left-radius:50px & border-bottom-right-radius:50px</h3>
+    <div class="border-test8"></div>
+    <h3>border-style:ridge & box-shadow:5px 5px 3px 2px gray</h3>
+    <div class="border-test9"></div>
+    <h3>border-style:solid & box-shadow:5px 5px 3px 2px gray</h3>
+    <div class="border-test10"></div>
+</body>
+
+</html>
