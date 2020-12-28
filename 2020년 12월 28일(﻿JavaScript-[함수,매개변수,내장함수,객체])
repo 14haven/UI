@@ -1,0 +1,813 @@
+2020년 12월 28일
+
+JavaScript
+함수
+
+* 함수
+소스코드의 집합으로 메소드, 모듈, 기능, 프로시저 등을 말하며
+자바스크립트에서는 function자료형임
+함수는 인자/매개변수, 리턴 값을 가질 수 있음
+
+자바스크립트에서 함수는 함수도 변수에 담에서 사용할 수 있다.
+자료형으로 인식
+
+입력값 x
+함수 (연산)
+반환값 / 결과값 y
+
+
+* 함수 선언
+반환 값 선언 없이 function 키워드만 이용하여 사용
+function 키워드에 함수 명을 작성하여 사용하는 방법(선언적 함수)과
+function에 함수 명 작성하지 않고 변수에 대입하는 방법(익명 함수),
+호출 없이 바로 사용하는 스스로 동작하는 함수(자체 함수)가 있음
+
+익명 함수는 함수에 대한 이름이 없음
+갖다 쓸 방법이 필요함
+함수를 만든 다음에 변수에 대입해서 사용함
+
+변수에 대입조차 안하고 function하고 바로 기능만 만들면 자체 함수가 된다.
+
+
+- function에 함수 명 작성
+선언적 함수
+
+
+function 함수명([매개변수]){
+	처리 로직;
+	[return 되돌려줄 값;]
+}
+
+- 변수에 함수를 넣어 작성
+callback 형태, 익명함수
+
+var f1 = function ([매개변수]){[
+	처리 로직;
+	[return 되돌려줄 값;]
+}
+
+- 스스로 동작 함수
+호출 없이 바로 실행
+매개변수가 올 수 없음
+
+(function(){
+	처리 로직
+})();
+
+호출 하지 않아도 자기 혼자 스스로 실행이 될 것 (로딩 되자마자 스스로 실행)
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JS 함수</title>
+    </head>
+    <body>
+        <h1>함수(Function)</h1>
+        <hr>
+        <h3>선언적 함수</h3>
+        <p> function 키워드에 함수명을 작성하여 사용하는 방법<br>
+            함수를 메모리에 바로 올려 놓기 때문에 코드의 순서에 상관없이 호출 가능
+            <br>
+            <br>
+            function 함수명 ( [매개변수] ) {<br>
+                처리 로직; <br>
+                [return 값 ;] <br>
+            }
+        </p>
+        <script>
+            function test1(){
+                alert("test1 함수 호출");
+            }   // 선언적 함수
+        </script>
+        <button onclick="test1()">버튼</button>
+        <hr>
+        <h3>익명 함수</h3>
+        <p>function에 함수명을 작성하지 않고 변수에 함수를 넣어 작성하는 방법<br>
+            함수 선언 이후에만 사용 가능 (script 안에서)<br>
+            <br>
+            var 변수명 = function( [매개변수] ){ <br>
+                처리 로직; <br>
+                [return 값;] <br>
+            }
+        </p>
+       
+        <script>
+            // 선언적 함수는 언제든지 해당 함수를 호출 할 수 있음
+            // 함수 정의부 전에도 호출 가능
+            test2(); // 호출 가능
+            // 익명 함수는 해당 함수가 선언된 이후에만 사용 가능
+                // 함수 정의부 이후에만 호출 가능   
+            // test3(); // 호출 안됨
+            function test2(){
+                alert("선언적 함수");
+            }
+            var test3 = function(){
+                alert("익명 함수");
+            }
+            test2();    // 호출 가능
+            test3();    // 호출 가능
+        </script>
+         <button onclick="test2()">선언적 함수 버튼</button>
+         <button onclick="test3()">익명 함수 버튼</button>
+         <hr>
+         <h3>스스로 동작하는 함수(호출없이 바로 실행되는 구조)</h3>
+         <p>function에 함수명을 작성하지 않고 작성<br><br>
+            (function(){ <br> 
+                처리 로직 <br>
+                // 리턴값 없음(스스로 호출하고 끝나기 때문) <br>
+            })();
+        </p>
+        <script>
+            (function(){ 
+                alert("스스로 호출하는 함수");
+        })();
+        </script>
+    </body>
+</html>
+
+
+
+
+* 함수 호출
+함수는 반드시 선언(정의)이 되어야만 실행 가능
+원하는 기능에 대한 함수를 호출하는 것을 함수 실행이라고 부르며
+return 값이 있다면 리턴 값을 받을 변수가 있어야 함
+
+return 값이 없는 경우
+	함수 명();
+	함수 명(인자 값1, 인자 값2, ...);
+return 값이 있는 경우
+	var 변수 명 = 함수 명();
+	var 변수 명 = 함수 명(인자 값1, 인자 값2, ...);
+
+* 매개변수와 return
+- 매개변수(전달인자)
+호출하는 코드와 호출되는 함수를 연결해주는 변수를 매개변수라 함
+지정된 매개변수보다 많게 선언하고 호출하는 것을 허용하나
+초과되는 매개변수는 무시함
+지정된 매개변수보다 적게 선언하고 호출하는 것도 허용하나
+선언이 안 된 매개변수는 undefined로 자동 설정 됨
+
+- return [되돌려 줄 값]
+return은 함수를 호출한 위치로 돌아가라는 의미로
+return 값(되돌려 줄 값) 미지정 시 undefined자료형으로 반환 됨
+
+
+* 가변인자 함수
+매개변수의 개수가 변하는 함수를 말하며
+모든 함수 내부에 arguments라는 배열에 자동으로 생성되어
+매개변수를 저장하게 됨
+매개변수가 지정되지 않은 값이 넘어오면
+arguments 배열에 순서대로 저장
+매개변수의 개수에 따라 함수처리를 달리 하려면
+조건문을 사용하여 다르게 적용할 수 있음
+
+* 매개변수 함수
+함수도 하나의 자료형으로 매개변수로 전달 가능
+function 함수 명(매개변수 명){
+	매개변수 명(); // 호출
+}
+
+매개변수로 함수를 넣어주면 매개변수로 함수 호출 가능
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JS 함수</title>
+    </head>
+    <body>
+        <h1>함수(Function)</h1>
+        <hr>
+        <h3>매개변수도 없고, 인자값도 없는 함수</h3>
+        <script>
+            function test1(){
+                alert("test1 함수 호출"); 
+            }
+        </script>
+        <button onclick="test1()">버튼</button>		// test1 함수 호출
+        <hr>
+
+        <h3>매개변수도 있고, 인자값도 있는 함수</h3>
+        <script>
+            function test2(var1, var2){
+                alert(var1+" / "+var2);
+            }
+        </script>
+        <button onclick="test2(10,20)">버튼</button>	// 10 / 20
+        <button onclick="test2('홍길동','김길동')">버튼</button>	// 홍길동 / 김길동
+        <hr>
+
+        <h3>매개변수는 있지만, 인자값이 없는 함수</h3>
+        <script>
+            function test3(data){
+                alert(data);
+            }
+        </script>
+        <button onclick="test3()">버튼</button>	// undefined
+        <hr>
+
+        <h3>매개변수는 있지만, 인자값이 부족한 함수</h3>
+        <script>
+            function test4(data1,data2){
+                alert(data1+" / "+data2);
+            }
+        </script>
+        <button onclick="test4('홍길동')">버튼</button>	// 홍길동 / undefined
+        <hr>
+
+        <h3>매개변수 보다 인자값이 많은 함수</h3>
+        <script>
+            function test5(data1){
+                alert(data1);
+            }
+        </script>
+        <button onclick="test5('홍길동','김길동')">버튼</button>	// 홍길동
+        <hr>
+
+        <h3>매개변수에 디폴트값 지정</h3>
+        <script>
+            function test6(data1,data2 = '없음'){
+                alert(data1+" / "+data2);
+            }
+        </script>
+        <button onclick="test6('홍길동')">버튼</button> 	// 홍길동 / 없음
+        <button onclick="test6('홍길동','김길동')">버튼</button>	// 홍길동 / 김길동
+        <hr>
+
+        <h3>가변인자 함수</h3>
+        <p>함수의 매개변수를 따로 지정하지 않은 경우<br>
+            자바스크립트의 함수들은 자동으로 arguments라는 배열을 사용하여 데이터를 저장<br>
+            매개변수가 없어도 별도의 arguments 배열을 이용하여 처리 가능</p>
+        <script>
+            function test7(){
+                if(arguments.length == 0){
+                    alert("test7 함수가 호출되었습니다.");
+                }else if(arguments.length == 1){
+                    alert(arguments[0]);
+                }else if(arguments.length == 2){
+                    alert(arguments[0]+" / "+arguments[1]);
+                }
+            }
+        </script>
+        <button onclick="test7()">버튼1</button>	// test7 함수가 호출되었습니다.
+        <button onclick="test7(10)">버튼2</button>	// 10
+        <button onclick="test7(10,20)">버튼3</button>	// 10 / 20
+        <hr>
+
+        <h3>함수의 리턴값 처리</h3>
+        <script>
+            function test8(){
+                var result = test9();
+                alert(result);
+            }
+            function test9(){
+                return "홍길동";
+            }
+        </script>
+        <button onclick="test8()">버튼</button>	// 홍길동
+        <hr>
+
+        <h3>form 태그에서 리턴값을 이용한 처리</h3>
+        <script>
+            function check(){
+                var id = document.getElementById("userId");
+                var pw = document.getElementById("userPw");
+                if(id.value == ""){
+                    alert("ID는 비워둘 수 없습니다.");
+                    id.focus(); // id에 커서를 갖다줘라
+                    return false; // 함수를 종료시키면서 false값을 반환해버림
+                }else if(pw.value == ""){
+                    alert("PW는 비워둘 수 없습니다.");
+                    pw.focus();
+                    return false;
+                }
+                return true;
+            }
+        </script>
+        <form action="function01.html" method="GET" onsubmit="return check()"> 
+	// submit을 했을 때 check() 메소드를 실행하고 return값에 따라서 action을 할지 말지가 결정됨
+
+            ID : <input type="text" id = "userId" ><br>
+            <!-- Email : <input type="email" id = "userEmail" required><br> -->
+            PW : <input type="password" id = "userPw" ><br>
+            <input type="submit" value="로그인">
+        </form>
+        <hr>
+        <h3>함수를 매개변수로 전달</h3>
+        <script>
+            function test10(){
+                alert("test10 실행");
+            }
+            function test11(otherFunction){
+                alert("test11 실행");
+                otherFunction();      
+            }
+        </script>
+        <button onclick="test11(test10())">버튼1</button> // test10 실행 -> test11 실행
+	// test10()메소드를 실행함 -> 리턴값 없음 -> test11()메소드 실행 -> otherFunction이 undefined이기 때문에 alert("tset11실행")만 하고 끝남
+
+        <button onclick="test11(test10)">버튼2</button>	// test11 실행 -> test10 실행
+	// test10을 test11()메소드의 인자값으로 넣음 -> alert("test11 실행"); -> test10(); 실행
+    </body>
+</html>
+
+
+
+자체적으로 제공해주는 내장 함수가 많다.
+* 내장 함수(인코딩, 디코딩)
+웹 통신 시 유니코드 문자는 오작동을 일으킬 문제가 있어 인코딩 필요
+
+웹 통신을 할 때 다양한 문자를 사용함
+http라는 프로토콜이 기본적으로 아스키코드만 인식함
+중간에 유니코드 때문에 문자가 표현이 안되는 문제가 생길 수 있음
+인코딩, 디코딩
+한글 자체는 URL에 못들어감
+URL엔느 아스키코드밖에 못들어간다.
+한글을 인코딩 시켜서 넣어줌
+받을 때 알아서 인코딩 된거구나 알고 디코딩해서 해석
+특수문자 등도 자동으로 인코딩
+특수한 기능을 가진 메타문자들도 인코딩이 필요하다.
+쿼리 부분에 '&'라는 것을 검색하고 싶음
+query = abcd 라면 자동으로 abcd 검색됨
+query = & 를 넣었더니 검색결과가 없습니다. 가 뜸
+파라미터를 구분하기 위한 '&'인지 문자 '&'인지 구분을 못함
+메타문자의 역할을 하는 것들을 문자 그대로 표현하게 해주는 것도 인코딩
+
+
+
+메소드
+escape() : 적절한 정도로 인코딩
+알파벳, 숫자, @ , * , - , _ , + , . , / 제외한 모든 문자
+
+unescape() : 적절한 정도로 디코딩
+
+encodeIURI() : 최소한의 문자만 인코딩
+인터넷주소에 사용되는( : ,  ; , / , = , ? , &) 변환 안함
+ 
+decodeURI() : 최소한의 문자만 디코딩
+
+encodeURIComponent() : 대부분의 문자 인코딩
+알파벳과 숫자를 제외한 모든 문자 인코딩
+
+decodeURIComponent() : 대부분의 문자 디코딩
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>함수연습</title>
+        <style>
+            fieldset{
+                width: 400px;
+                text-align: center;
+                background-color: rgb(230, 230, 230);
+            }
+            div.box{
+                width: 500px;
+                height: 100px;
+                margin: 10px;
+                padding: 10px;
+                background-color: skyblue;
+                display : none;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>함수 연습</h1>
+        <hr>
+        <fieldset>
+            <legend>검색할 항목을 선택하세요</legend>
+            <input type="radio" name="category" value="title" onclick="showDiv(this);" id="title">
+            <label for="title">제목</label>
+            <input type="radio" name="category" value="date" onclick="showDiv(this);" id="date">
+            <label for="date">날짜</label>
+            <input type="radio" name="category" value="writer" onclick="showDiv(this);" id="writer">
+            <label for="writer">작성자</label>
+        </fieldset>
+        <hr>
+        <div id="titlebox" class="box">
+            <form method="post" action="#">
+                <label> 검색할 제목을 입력하세요 : </label>
+                <br>
+                <input type="search" name="title" size="50"><br>
+                <input type="submit" value="검색">
+            </form>
+        </div>
+        <div id="datebox" class="box">
+            <form method="post" action="#">
+                <label> 검색할 날짜을 입력하세요 : </label>
+                <br>
+                <input type="date" name="start"> -
+                <input type="date" name="end"><br>
+                <input type="submit" value="검색">
+            </form>
+        </div>
+        <div id="writerbox" class="box">
+            <form method="post" action="#">
+                <label> 검색할 작성자 아이디를 입력하세요 : </label>
+                <br>
+                <input type="search" name="writer" size="25"><br>
+                <input type="submit" value="검색">
+            </form>
+        </div>
+        <script>
+            // 제목 체크 시 titlebox만 보여지게,
+            // 날짜 체크 시 datebox만 보여지게,
+            // 작성자 체크 시 writerbox만 보여지게
+            function showDiv(element){
+                // if(element.checked == true && element.value == "title"){
+                //     document.getElementById('titlebox').style.display = "block";
+                //     document.getElementById('datebox').style.display = "none";
+                //     document.getElementById('writerbox').style.display = "none";
+                // }else if(element.checked == true && element.value == "date"){
+                //     document.getElementById('titlebox').style.display = "none";
+                //     document.getElementById('datebox').style.display = "block";
+                //     document.getElementById('writerbox').style.display = "none";
+                // }else if(element.checked == true && element.value == "writer"){
+                //     document.getElementById('titlebox').style.display = "none";
+                //     document.getElementById('datebox').style.display = "none";
+                //     document.getElementById('writerbox').style.display = "block";
+                // }
+                var box = document.getElementsByClassName('box');
+                for(i = 0; i<box.length; i++){
+                    box[i].style.display = "none";
+                }
+                document.getElementById(element.value+'box').style.display="block";
+
+            }
+        </script>
+    </body>
+</html>
+
+
+* 내장 함수
+메소드
+eval(String) : String(문자열 자체)을 자바스크립트 코드로 실행
+isFinite(number) : number가 무한한 값인지 확인
+inNaN(number) : number가 NaN인지 확인
+- 변수의 무한대 값을 확인할 때는 반드시 위의 함수를 사용(비교연산자 적용X)
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JS 내장함수</title>
+    </head>
+    <body>
+        <h1>내장 함수</h1>
+        <hr>
+        <h3>escape(), unescape()</h3>
+        <p>알파벳대/소문자, 0~9 숫자, @*-_+./ 를 제외한 모든 문자열을 인코딩</p>
+        <script>
+            function original1(){
+                var param = document.getElementById('input1').value;
+                var url = "http://www.iei.or.kr?data="+param;
+                alert(url);
+            }
+            function encode1(){
+                var param = document.getElementById('input1').value;
+                var url = "http://www.iei.or.kr?data="+param;
+                alert("인코딩 값 : "+escape(url));
+            }
+            function decode1(){
+                var param = document.getElementById('input1').value;
+                var url = "http://www.iei.or.kr?data="+param;
+                var encodedata = escape(url);
+                alert("인코딩 값 : "+encodedata+"\n디코딩 값 : "+unescape(encodedata));
+            }
+        </script>
+        <input type="text" id="input1"><br>
+        <button onclick="original1();">원본</button>
+        <button onclick="encode1();">인코딩</button>
+        <button onclick="decode1();">디코딩</button>
+        <hr>
+        <h3>encodeURI(), docodeURI()</h3>
+        <p>인터넷 주소에 사용되는 문자열 인코딩<br>
+            : ; / = ? & 는 변환 안함
+        </p>
+        <script>
+            function original2(){
+                var param = document.getElementById('input2').value;
+                var url = "http://www.iei.or.kr?data="+param;
+                alert(url);
+            }
+            function encode2(){
+                var param = document.getElementById('input2').value;
+                var url = "http://www.iei.or.kr?data="+param;
+                alert("인코딩 값 : "+encodeURI(url));
+            }
+            function decode2(){
+                var param = document.getElementById('input2').value;
+                var url = "http://www.iei.or.kr?data="+param;
+                var encodedata = encodeURI(url);
+                alert("인코딩 값 : "+encodedata+"\n디코딩 값 : "+decodeURI(encodedata));
+            }
+        </script>
+        <input type="text" id="input2"><br>
+        <button onclick="original2();">원본</button>
+        <button onclick="encode2();">인코딩</button>
+        <button onclick="decode2();">디코딩</button>
+        <hr>
+        <h3>eval()</h3>
+        <p>문자열을 자바스크립트 코드로 변환해서 실행하는 함수</p>
+        <script>
+            str = "var num1 = 10;";
+            str += "var num2 = 20;";
+            str += "alert('두 수의 합은 '+(num1+num2)+'입니다.');";
+            function printCode(){
+                alert(str);
+            }
+            function execute(){
+                eval(str);
+            }
+        </script>
+        <button onclick="printCode();">코드출력</button>
+        <button onclick="execute();">코드실행</button>
+        <hr>
+        <h3>isFinite()</h3>
+        <p>number형 데이터가 맞는지 확인하는 함수 <br>
+            맞으면 true, 아니면 false 반환<br>
+            단, 아무것도 없을 경우에도 true를 반환
+        </p>
+        <h3>isNaN()</h3>
+        <p>number가 NaN(Not a Number)인지 확인<br>
+            숫자가 아니면 true, 숫자면 false를 반환<br>
+            isFinite()의 반대 기능
+        </p>
+        <p>* 대부분의 프로그래밍언어는 0으로 숫자를 나누면 
+            자동으로 오류가 발생하고 프로그램이 종료됨<br>
+            하지만 자바스크립트는 0으로 숫자를 나누면 infinity라는 값이 들어감<br>
+            자바스크립트가 표현할 수 없는 숫자는 NaN으로 표시됨
+        </p>
+        <script>
+            function test1(){
+                var num1 = 10 / 0;
+                var num2 = 10 / 'a';
+                alert("num1 : "+num1+" / num2 : "+num2);
+            }
+            function test2(){
+                var num1 = prompt("첫번째 숫자 입력 : ");
+                var num2 = prompt("두번째 숫자 입력 : ");
+                if(isNaN(num1) || isNaN(num2)){
+                    alert("숫자를 입력해야 합니다.");
+                }else{
+                    var num3 = num1 / num2;
+                    if(num3 == Infinity){
+                        alert("0으로 나눌 수 없습니다.");
+                    }  else{
+                        alert("결과는 : "+num3);
+                    }
+                }
+            }
+        </script>
+        <button onclick="test1()">버튼</button>
+        <button onclick="test2()">버튼</button>
+    </body>
+</html>
+
+
+-------------------------------------------------------------------------------------------------
+
+
+객체
+Object
+연관된 속성들, 연관된 기능들을 묶어서 사용하는 것
+
+객체 이름이 있어야 함
+객체 안에는 다양한 데이터가 있음
+데이터를 구분할 이름도 있어야 함
+그 이름 : key
+key에 해당하는 각각의 데이터들 : value
+key와 value의 쌍들이 여러개 들어갈 수 있다.
+
+
+
+* 객체 선언 및 호출
+객체는 키 값을 사용하여 속서(멤버 변수) 식별
+중괄호를 사용하여 객체를 생성하고 [ ] 또는 . 으로 요소 값에 접근
+속성에 모든 자료형이 올 수 있고 그 중 함수 자료형 요소를 메소드라고 함
+객체 내에서 자신의 속성을 호출할 때 반드시 this키워드를 사용하고
+객체의 모든 속성을 출력하려면 단순 for문이나 while문으로는 출력이 불가하니
+for in 문을 사용해야 함
+(식별자로 사용할 수 없는 문자(띄어쓰기, 특수문자)를 속성으로 사용할 경우 ' ' 로 묶어서 선언하고 접근 시에는 [ ]만 가능)
+
+
+- 선언 방법
+var 변수 명(혹은 객체 명) = {
+	속성(키 값) : 값,
+	속성(키 값) : 값,
+	속성(키 값) : 값
+};
+
+- 속성 값 접근
+변수 명(객체 명)['요소 명(키 값)'];
+또는
+변수 명(객체 명).요소 명(키 값);
+
+
+* 함수 활용 객체 생성
+함수의 매개변수에 필요한 속성 값을 다 받아서 객체 생성 후 리턴
+
+function 함수 명(value1, value2, value3, ...){
+	var 변수 명(객체 명)={
+	속성 명 : 'value1';
+	속성 명 : "value2";
+	...
+	}
+	return 변수 명(객체 명);
+}
+
+
+* 객체 속성 추가 및 삭제
+속성 및 메소드를 동적으로 추가/삭제 가능
+
+추가
+	변수 명(객체 명).속성 명 = '값';
+	변수 명(객체 명).속성 명 = "값";
+	변수 명(객체 명).속성 명 = function(){
+		메소드 로직;
+		[return [리턴 값];]
+	};
+
+삭제
+	delete(변수 명(객체 명).속성 명);
+
+
+* 객체 배열 활용
+생성된 객체를 배열에 넣어 활용 가능
+
+var 변수 명 = [ ]; // 배열 생성
+데이터 대입 : 변수 명.push({속성 명: "값", 속성 명: "값", ...});
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>객체</title>
+        <style>
+            .area-big{
+                height: 300px;
+                background-color: lightgray;
+                border: 1px solid black;
+            }
+            .area{
+                height: 200px;
+                background-color: lightgray;
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>객체</h1>
+        <hr>
+        <h3>객체의 선언과 호출</h3>
+        <p>객체는 키 값을 사용하여 속성을 식별함<br>
+        중괄호를 사용하여 객체를 생성<br>
+        속성에는 모든 자료형이 올 수 있음
+        </p>
+        <button onclick="test1();">실행 확인</button>
+        <div id="area1" class="area-big"></div>
+        <script>
+            function test1(){
+                var product = {
+                    pName:'Dry Mango',
+                    type:'Pickle',
+                    ingerdient:['mango','sugar'],
+                    origin:'Pilippines'
+                };
+                var area1 = document.getElementById('area1');
+                area1.innerHTML = "product : "+product+"<br><br>";
+                // area1.innerHTML = area1.innerHTML + "<b>객체명['속성명'으로 접근</b><br>"
+                area1.innerHTML += "<b>객체명['속성명']으로 접근</b><br>";
+                area1.innerHTML += "pName : "+product['pName']+"<br>";
+                area1.innerHTML += "type : "+product['type']+"<br>";
+                area1.innerHTML += "ingerdient[0] : "+product['ingerdient'][0]+"<br>";
+                area1.innerHTML += "ingerdient[1] : "+product['ingerdient'][1]+"<br>";
+                area1.innerHTML += "origin : "+product['origin']+"<br><br>";
+
+                area1.innerHTML += "<b>객체명.속성명 으로 접근</b><br>";
+                area1.innerHTML += "pName : "+product.pName+"<br>";
+                area1.innerHTML += "type : "+product.type+"<br>";
+                area1.innerHTML += "ingerdient[0] : "+product.ingerdient[0]+"<br>";
+                area1.innerHTML += "ingerdient[1] : "+product.ingerdient[1]+"<br>";
+                area1.innerHTML += "origin : "+product.origin+"<br><br>";
+            }
+        </script>
+        <hr>
+        <h3>객체의 메소드 속성</h3>
+        <p>객체의 속성 중 함수 자료형인 속성</p>
+        <button onclick="test2();">실행 확인</button>
+        <div id="area2" class="area"></div>
+        <script>
+            function test2(){
+                var student = {
+                    name: '홍길동',
+                    age: 20,
+                    print: function(element){
+                        // 객체 내에서 자신의 속성을 호출할 때는 반드시 this를 사용해야 함
+                        element.innerHTML = "이름은 "+this.name+"이고, 나이는 "+this.age+"살 입니다.";
+                    }
+                }
+                var area2 = document.getElementById('area2');
+                student.print(area2);
+            }
+        </script>
+        <hr>
+        <h3>객체와 반복문</h3>
+        <p>객체의 모든 속성을 한번에 접근 할 때 단순 반복문으로는 사용 불가<br>
+            for in문을 사용해야 함
+        </p>
+        <button onclick="test3();">실행 확인</button>
+        <div id="area3" class="area"></div>
+        <script>
+            function test3(){
+                var game = {
+                    title: 'DIABLO 3',
+                    price: '35,000원',
+                    language: '한국어지원',
+                    supportOS: 'window 32/64',
+                    service: true
+                };
+
+                var area3 = document.getElementById('area3');
+                
+                for(var key in game){
+                    area3.innerHTML += key+" : "+game[key]+"<br>";
+                }
+            }
+        </script>
+        <hr>
+        <h3>in과 with 키워드</h3>
+        <p>in : 객체 내부에 해당 속성이 있는지 확인하는 키워드</p>
+        <p>with : 호출시 객체명을 생략할 수 있게 해주는 키워드(코드를 줄여주는 키워드)</p>
+        <label for='name'>이름 : </label>
+        <input type='text' id='name'><br>
+        <label for='kor'>국어 : </label>
+        <input type='text' id='kor'><br>
+        <label for='eng'>영어 : </label>
+        <input type='text' id='eng'><br>
+        <label for='math'>수학 : </label>
+        <input type='text' id='math'><br>
+        <button onclick="test4();">실행 확인</button>
+        <div id="area4" class="area-big"></div>
+        <script>
+            function test4(){
+                var namedata = document.getElementById('name').value;
+                var kordata = parseInt(document.getElementById('kor').value);
+                var engdata = parseInt(document.getElementById('eng').value);
+                var mathdata = parseInt(document.getElementById('math').value);
+
+                var student = {
+                    name: namedata,
+                    kor: kordata,
+                    eng: engdata,
+                    math: mathdata
+                };
+                var area4 = document.getElementById('area4');
+                area4.innerHTML += "<b>in 키워드 테스트</b><br>";
+                area4.innerHTML += "student객체 안에 name 속성 있는지 확인 : "+('name' in student)+"<br>";
+                area4.innerHTML += "student객체 안에 age 속성 있는지 확인 : "+('age' in student)+"<br>";
+
+                area4.innerHTML += "<br><b>with 키워드 테스트</b><br>";
+                // area4.innerHTML += "name : "+student.name+"<br>";
+            
+                with(student){
+                    area4.innerHTML += "이름 : "+name+"<br>";
+                    area4.innerHTML += "국어 : "+kor+"<br>";
+                    area4.innerHTML += "영어 : "+eng+"<br>";
+                    area4.innerHTML += "수학 : "+math+"<br>";
+                    area4.innerHTML += "합계 : "+(kor+eng+math)+"<br>";
+                    area4.innerHTML += "평균 : "+(kor+eng+math)/3+"<br>";
+                }
+            }
+        </script>
+        <hr>
+        <h3>객체의 속성 추가와 제거</h3>
+        <p>처음 객체 생성 이후에 속성을 추가하거나 제거하는 방법</p>
+        <button onclick="test5();">실행 확인</button>
+        <div id="area5" class="area"></div>
+        <script>
+            function test5(){
+                var area5 = document.getElementById('area5');
+
+                var student = {};
+
+                area5.innerHTML += "<b>속성 추가</b><br>";
+                // 객체에 속성을 추가
+                student.name = '홍길동';
+                student.age = 20;
+                student.hobby = '게임';
+
+                for(var key in student){
+                    area5.innerHTML += key+" : "+student[key]+"<br>";
+                }
+
+                area5.innerHTML += "<b>속성 제거</b><br>";
+                delete(student.hobby);
+                for(var key in student){
+                    area5.innerHTML += key+" : "+student[key]+"<br>";
+                }
+            }
+        </script>
+    </body>
+</html>
