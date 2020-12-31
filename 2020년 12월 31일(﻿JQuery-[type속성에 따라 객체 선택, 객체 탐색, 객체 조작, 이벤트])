@@ -1,0 +1,1068 @@
+2020년 12월 31일
+
+jQuery
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>선택자</title>
+        <!-- JQuery 연결-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="crossorigin="anonymous"></script>
+        <script>
+            $(function(){
+                $('input:text').css('background','red');
+                $('input:button').attr('value','왕버튼')
+                    .css('width','200px').css('height','50px');
+                $('input:checkbox').attr('checked',true)
+                    .css({'width':'50px','height':'50px'}); // 배열의 형태로 나열할 수 있다.
+                $('input:file').css('background','yellowgreen');
+                $('input:image').mouseenter(function(){
+                    $(this).attr('src','../images/top_logo.jpg');
+                });
+                $('input:image').mouseout(function(){
+                    $(this).attr('src','../images/iconsample.PNG');
+                });
+                $('input:password').css('background','yellow');
+                $('input:radio').attr('checked',true);
+                $('input:reset').css({'background':'blue','color':'white'});
+                $('input:submit').css({'background':'purple','color':'white'})
+                        .attr('value','전송');
+            });
+        </script>
+    </head>
+    <body>
+        <h1>입력 양식 필터 선택자</h1>
+        <p>input 태그의 type 속성에 따라 문서 객체 선택</p>
+        <hr>
+        <label>텍스트 상자 : </label><input type="text"><br>
+        <label>버튼 상자 : </label><input type="button"><br>
+        <label>체크박스 : </label><input type="checkbox"><br>
+        <label>파일 : </label><input type="file"><br>
+        <label>이미지 : </label><input type="image" src="../images/iconsample.PNG"><br>
+        <label>패스워드 상자 : </label><input type="password"><br>
+        <label>라디오 버튼 : </label><input type="radio"><br>
+        <label>리셋 버튼 : </label><input type="reset"><br>
+        <label>submit 버튼 : </label><input type="submit"><br>
+    </body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<title>선택자</title>
+</head>
+<body>
+	<h1>입력 양식 필터 선택자</h1>
+	<h3>checkbox 의 상태에 대한 선택자</h3>
+	<label>취미 : </label>
+	<input type="checkbox" name="hobby" value="game" id="game">
+	<label for="game">게임</label>
+	<input type="checkbox" name="hobby" value="movie" id="movie">
+	<label for="movie">영화</label>
+	<input type="checkbox" name="hobby" value="music" id="music">
+	<label for="music">음악</label>	
+	<script>
+		$(function(){
+			$('input:checkbox').change(function(){
+				if($(this).prop('checked')){
+					$(this).css({'width':'50px','height':'50px'});
+				}else{
+					$(this).css({'width':'15px','height':'15px'});
+				}
+			});
+		});
+	</script>
+	<hr>
+	<h3>select > option 태그의 상태에 대한 선택자</h3>
+	<select id="national">
+		<option value="한국" selected>한국</option>
+		<option value="미국">미국</option>
+		<option value="일본">일본</option>
+		<option value="중국">중국</option>
+	</select>
+	<label>선택한 나라 : </label><input type="text" id="result">
+	<script>
+		$(function(){
+			$('#national').change(selectChange);
+		});
+		function selectChange(){
+				var value = $('option:selected').val();
+				$('#result').val(value);
+		}
+	</script>
+	<hr>
+	
+	<h3>input 상태에 대한 선택자</h3>
+	<label>활성화 텍스트상자: </label><input type="text"><br>
+	<label>비 활성화 텍스트상자: </label><input type="text" disabled><br>
+	<label>활성화 버튼 : </label><input type="button" value="활성화"><br>
+	<label>비 활성화 버튼 : </label><input type="button" value="비활성화" disabled><br>
+	<script>
+		$(function(){
+			$('input:enabled').css('background-color','yellowgreen');
+			$('input:disabled').css('background-color','red');
+		});
+	</script>
+	<hr>
+	
+	<h3>필터 선택자</h3>
+	<table>
+		<tr><th>이름</th><th>혈액형</th><th>지역</th></tr>
+		<tr><td>김진호</td><td>AAA형</td><td>남양주</td></tr>
+		<tr><td>유병승</td><td>AB형</td><td>안산</td></tr>
+		<tr><td>유정훈</td><td>B형</td><td>전주</td></tr>
+		<tr><td>노민수</td><td>B형</td><td>인천</td></tr>
+		<tr><td>김동현</td><td>A형</td><td>서울</td></tr>
+		<tr><td>최범석</td><td>O형</td><td>수원</td></tr>
+		<tr><td colspan="2">총원</td><td>6</td></tr>
+	</table>
+	<script>
+		$(function(){
+			$('tr:odd').css('background','gray');
+			$('tr:even').css('background','lightgray');
+			$('tr:first').css('background','black').css('color','white');
+			$('tr:last').css('background','orangered').css('color','white');
+		});
+	</script>
+	<hr>
+
+	<h3></h3>
+	
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<title>Insert title here</title>
+<script>
+	$(function(){
+		// n번째 위치하는 객체 선택
+		$('tr:eq(0)').css({'background':'black','color':'white'})
+	
+		// 수열번 째 위치하는 객체 선택
+		$('tr:nth-child(2n)').css('background','yellowgreen');
+		$('td:nth-child(3n)').css('background','orange');
+
+		// n번째를 초과하는 객체 선택
+		$('tr:gt(6)').css('background','lightgray'); // 6번째 다음꺼부터
+
+		// n번째 미만에 위치하는 객체 선택
+		$('tr:lt(6)').css('font-size','1.5em'); // 6번째 전꺼
+		
+		// 특정 문자열을 포함하는 객체 선택
+		$("td:contains('A형')").css('color','red'); 
+
+		// 특정 태그를 가지고 있는 객체 선택
+		$('td:has(a)').css('color','white');
+
+		// 선택자와 일치하지 않는 객체 선택
+		$("td:not(:contains('유정훈'))").css('color','lightgray'); // 유정훈 빼고 다 lightgray로
+	
+	
+	});
+</script>
+</head>
+<body>
+	<h1>함수 형태의 필터선택자</h1>
+	<h3>:nth-child()필터선택자</h3>
+	<table>
+		<tr><th>이름</th><th>혈액형</th><th>지역</th></tr>
+		<tr><td>김진호</td><td>AAA형</td><td><a>남양주</a></td></tr>
+		<tr><td>유병승</td><td>AB형</td><td>안산</td></tr>
+		<tr><td>유정훈</td><td>B형</td><td>전주</td></tr>
+		<tr><td>노민수</td><td>B형</td><td>인천</td></tr>
+		<tr><td>김동현</td><td>A형</td><td>서울</td></tr>
+		<tr><td>최범석</td><td>O형</td><td>수원</td></tr>
+		<tr><td colspan="2">총원</td><td>6</td></tr>
+	</table>
+</body>
+</html>
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+선택자로 다양하게 선택할 수 있지만 이것만으로는 번거로운 부분이 있다.
+
+
+객체 탐색
+html페이지에 있는 요소들에 대해 검색하는 것, 찾아가는 것
+
+* 순회(탐색) 메소드(Traversing)
+
+- filtering 메소드
+선택자로 지정한 객체를 기준으로
+객체 그룹에서 위치를 가지고 객체를 선택하는 메소드
+
+ 메소드
+$('요소 명').first() : 선택된 요소 중 제일 처음 있는 요소 리턴
+
+$('tr:first').css('background','black').css('color','white');
+$('tr:last').css('background','orangered').css('color','white');
+이랬던 것을 요소에는 그냥 tr만 해놓고 메소드 형태로 찾는 형식
+선택자로 쓰냐 메소드로 쓰냐의 차이
+
+$('요소 명').last() : 선택된 요소 중 제일 마지막에 있는 요소 리턴
+$('요소 명').eq(숫자) : 인텍스 번호와 일치하는 요소 리턴(0부터 시작)
+$('요소 명').filter('검색식 | 선택자') : 인자 값과 일치하는 요소 리턴
+$('요소 명').not() : 선택된 요소와 일치하지 않는 요소 리턴
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <!-- JQuery 연결-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="crossorigin="anonymous"></script>
+        <script>
+            $(function(){
+                // h4 태그 중 짝수 인덱스
+                $('h4:even').css({'background':'black','color':'white'});
+                // filter() 메소드
+                $('h4').filter(':even').css({'background':'orangered','color':'white'});
+            
+                // 함수를 매개변수로 하는 filter()메소드 사용
+                $('h4').filter(function(index){
+                    return index %2 == 1;
+                }).css({'background':'yellowgreen','color':'black'});
+            
+                // 선택된 요소 중 제일 처음에 있는 요소 리턴
+                $('h4').first().css("font-size","1.5em");
+
+                // 선택된 요소 중 제일 마지막에 있는 요소 리턴
+                $('h4').last().text("마지막 요소");
+                
+                // 인덱스 번호와 일치하는 요소만 리턴
+                $("h4").eq(3).text("eq()로 선택됨");
+
+                // 인자값과 일치하지 않는 요소만 리턴
+                $("h4").not(".test").css({'background':'yellow','color':'black'});
+            });
+        </script>
+    </head>
+    <body>
+        <h1>순회(탐색) 메소드</h1>
+        <hr>
+        <h3>filtering 메소드</h3>
+        <h4 class='test'>test-1</h4>
+        <h4 class='test'>test-2</h4>
+        <h4 class='test'>test-3</h4>
+        <h4 class='test'>test-4</h4>
+        <h4>test-5</h4>
+        <h4 class='test'>test-6</h4>
+
+    </body>
+</html>
+
+
+- Ancestors 메소드
+선택된 요소의 상위 요소들을 선택할 수 있는 메소드
+
+ 메소드
+$('요소 명').parent() : 선택된 요소의 바로 위 상위 요소 리턴
+$('요소 명').parents([인자]) : 선택된 요소의 모든 상위 요소 리턴, 매개변수가 있으면 매개변수와 일치하는 부모만 리턴
+$('요소 명').parentsUntil([인자]) : 선택된 요소부터 인자 요소까지 범위의 요소 리턴
+
+
+- Descendants 메소드
+선택된 요소의 하위 요소들을 선택할 수 있는 메소드
+
+ 메소드
+$('요소 명').children([인자]) : 선택된 요소의 모든 자손(다음 레벨) 객체 리턴,
+선택된 요소의 인자와 일치하는 자손 객체만 리턴
+$('요소 명').find(인자) :  선택된 요소의 인자와 일치하는 모든 후손(모든 레벨) 객체 리턴
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>순회(탐색) 메소드</title>
+        <!-- JQuery 연결-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="crossorigin="anonymous"></script>
+        <style>
+            .wrap *{
+                border : 1px solid lightgray;
+                display : block;
+                padding : 5px;
+                margin : 15px;
+                color : gray;
+            }
+        </style>
+        <script>
+            $(function(){
+                // 선택된 요소의 모든 자손(바로 다음 레벨) 객체 리턴
+                    // 매개변수가 있는 경우 일치하는 자손 객체 리턴
+                    $('.wrap').children().css({'color':'red','border':'2px solid red'}); // wrap의 바로 밑에 있는 자손
+                    // 자손의 자손 객체 선택
+                    $('.wrap').children().children().css({'color':'blue','border':'2px solid blue'}); // 자손의 자손 모두 선택
+                    $('.wrap').children().children('ul').css({'color':'black','font-size':'1.5em'}); // 자손의 자손중에 ul만 선택
+                
+                    // 선택된 요소의 인자와 일치하는 모든 후손(모든 레벨) 객체를 리턴
+                    $('.wrap').find('span').css('font-weight','bold');
+                });
+        </script>
+    </head>
+    <body>
+        <h1>순회(탐색) 메소드</h1>
+        <hr>
+        <h3>descendants 메소드</h3>
+        <p>선택된 요소의 하위 요소들을 선택할 수 있는 메소드</p>
+        <div class="wrap">
+            <div style="width:500px">
+                div (great-grandparent)
+                <ul>
+                    ul (grandparent)
+                    <li>
+                        li (direct parent)
+                        <span>span</span>
+                    </li>
+                </ul>
+           </div>
+           <div style="width:500px">
+             div (grandparent)
+              <p>
+                  p (direct parent)
+                  <span>span</span>
+              </p>    
+            </div>
+        </div>
+    </body>
+</html>
+
+
+- Sideways 메소드
+같은 레벨에 있는 요소(형제)를 선택할 수 있는 메소드
+
+ 메소드
+$('요소 명').siblings([인자]) : 선택된 요소와 같은 레벨(형제)에 있는 요소 리턴,
+선택된 요소와 같은 레벨 중 인자와 일치하는 요소 리턴
+$('요소 명').next() : 선택된 요소의 같은 레벨 중 선택된 요소 다음 한 개 요소 리턴
+$('요소 명').nextAll() : 선택된 요소와 같은 레벨 중 선택된 요소 다음의 모든 요소 리턴
+$('요소 명').nextUntil(인자) : 선택된 요소의 같은 레벨 중 인자까지의 모든 요소 리턴
+$('요소 명').prev() : 선택된 요소와 같은 레벨 중 선택된 요소 이전의 한 개 요소 리턴
+$('요소 명').prevAll() : 선택된 요소와 같은 레벨 중 선택된 요소 이전의 모든 요소 리턴
+$('요소 명').prevUntil(인자) : 선택된 요소의 같은 레벨 중 선택된 요소 이전의 모든 요소 리턴
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>순회(탐색) 메소드</title>
+        <!-- JQuery 연결-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="crossorigin="anonymous"></script>
+        <style>
+            .wrap, .wrap *{
+                border : 1px solid lightgray;
+                display : block;
+                padding : 5px;
+                margin : 15px;
+                color : gray;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>순회(탐색) 메소드</h1>
+        <hr>
+        <h3>sideways 메소드</h3>
+        <p>같은 레벨에 있는 요소(형제)를 선택할 수 있는 메소드</p>
+        <div class='wrap'>
+            div (parent)
+            <p>p</p>
+            <span>span</span>
+            <h2>h2</h2>
+            <h3>h3</h3>
+            <p>p</p>
+        </div>
+        <script>
+            $(function(){
+                // sibling() - 선택된 요소와 같은 레벨에 있는 요소 리턴
+                    // 인자가 있는 경우 인자와 일치하는 요소 리턴
+                $('h2').siblings().css({'color':'red','border':'2px solid red'});
+                $('h2').siblings('p').css({'color':'orange','border':'2px solid orange'});
+            
+                // 선택된 요소의 같은 레벨의 형제들 중 선택된 요소 다음 한 개의 요소 리턴
+                $('h2').next().css({'color':'blue','border':'2px solid blue'});
+            
+                // 선택된 요소의 같은 레벨의 형제들 중 선택된 요소 다음 모든 요소 리턴
+                $('h2').nextAll().css('font-size','2em');
+
+                // 선택된 요소부터 인자 범위까지 같은 레벨의 모든 요소 리턴(다음 요소)
+                $('h2').nextUntil('p').css('border','dashed'); // p 전까지
+
+                // 선택된 요소의 같은 레벨의 형제들 중 선택된 요소 이전의 한 개 요소 리턴
+                $('h2').prev().css('background','yellow');
+
+                // 선택된 요소와 같은 레벨의 형제들 중 선택된 요소 이전 모든 요소 리턴
+                $('h2').prevAll().css('font-size','0.5em');
+
+                // 선택된 요소부터 인자 범위까지 같은 레벨의 모든 요소 리턴(이전 요소)
+                $('h2').prevUntil('p').css('border','dotted');
+            });
+        </script>
+    </body>
+</html>
+
+
+- 요소가 있는지 찾는 메소드
+선택자로 지정된 범위에 특정한 요소가 존재하는지 찾을 때 사용
+
+ 메소드
+$('요소 명').is(인자) : 선택된 요소의 범위 내에 인자와 동일한 요소가 있는지 찾아서
+있으면 true, 없으면 false 리턴
+
+
+        <h3>is 메소드</h3>
+        <p>
+            선택자로 지정한 범위에 특정한 요소가 존재하는지 찾을 떄 사용하는 메소드<br>
+            있으면 true, 없으면 false 반환
+        </p>
+        <h3 class="test">test1</h3>
+        <h3>test2</h3>
+        <h3 class="test">test3</h3>
+        <h3 class="test">test4</h3>
+        <h3>test5</h3>
+        <h3 class="test">test6</h3>
+        <script>
+            $(function(){
+                // 방법 1
+                // $('h3.test').css({'background':'orangered','color':'white'});
+                
+                // 방법 2
+                $('h3').each(function(){ // each : 반복해서 작업, 하나하나 'h3'에 대해 메소드 진행
+                    if($(this).is(".test")){  // 현재 가져온 거에 test라는 클래스가 있니?
+                        $(this).css({'background':'orangered','color':'white'});
+                    }
+                });
+            });
+        </script>
+
+
+--------------------------------------------------------------------------------------------------------
+
+객체를 선택했으면 이제 객체를 조작할 수 있어야 한다.
+객체 조작
+
+기본 설정
+* jQuery 배열 관리
+- each()
+배열 관리하는 fro in문과 비슷한 메소드로 객체나 배열의 요소를 검사
+두개의 매개변수 사용
+index : 객체/배열의 순번
+item : 값을 보관하는 변수(객체), ' . ' 으로 접근
+
+ 메소드
+$.each(배열이름, function(index,item){}) 
+: 지정한 배열을 0부터 자동으로 불러와 순번과 값을 각각 index와 item에 넣는 메소드
+$('요소 명').each(function(index,item){})
+: 선택자로 선택한 요소를 index 순번으로 item에 요소 값을 수정 시 사용하는 메소드
+
+$.each(배열이름, function(index,item){
+	배열(객체) 차례로 처리할 때 사용
+});
+
+$('요소 명').each(function(index,item){
+	선택된 요소들을 차례로 조작할 때 사용
+});
+
+
+- extend()
+jQuery에서 객체의 내용을 추가하는 메소드
+
+$.extend(객체 이름, {
+	추가할 객체 내용 1,
+	추가할 객체 내용 2,
+	......
+});
+
+
+- noConflict()
+jQuery 변수를 $ 외에 다른 것으로 지정하는 메소드로
+다른 JavaScript 플러그인을 사용 시 특수문자 $ 변수를 중복되어 발생하는
+에러 방지를 위해 사용하기도 함
+
+var 변수 명 = $.noConflict();
+(변수 명을 $ 대신 사용)
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>객체 조작 메소드</title>
+        <!-- JQuery 연결-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="crossorigin="anonymous"></script>
+        <style>
+            .high_light_0 { background : yellow;}
+            .high_light_1 { background : orange;}
+            .high_light_2 { background : blue;}
+            .high_light_3 { background : green;}
+            .high_light_4 { background : red;}
+        </style>
+    </head>
+    <body>
+        <h1>객체 조작 메소드</h1>
+        <hr>
+        <h3>each() 메소드</h3>
+        <p>배열을 관리하는 for in문과 비슷한 메소드로 객체나 배열의 요소를 검사</p>
+        <div id='wrap'>
+            <h1>item-0</h1>
+            <h1>item-1</h1>
+            <h1>item-2</h1>
+            <h1>item-3</h1>
+            <h1 id='item4'>item-4</h1>
+        </div>
+        <script>
+            $(function(){
+                $('#wrap').children().each(function(index,item){  // 가져온 요소 하나하나 접근해서 반복해서 작업을 하겠다.
+                    // 문서 객체에 class 속성을 추가
+                    $(this).addClass('high_light_'+index);
+                    // 문서 객체에 class 속성을 제거
+                    if(index == 2){
+                        $(this).removeClass('high_light_'+index);
+                    }
+                });
+                // 문서 객체에 class 속성을 추가/제거(추가되어있으면 제거, 제거되어있으면 추가)
+                $('#item4').click(function(){
+                    $(this).toggleClass('high_light_4'); // toggle : 클릭할 때마다 다르게 지정
+                });
+            });
+        </script>
+        <hr>
+        
+        <h3>extend() 메소드</h3>
+        <p>객체에 속성을 추가하거나 여러 개의 객체를 하나로 합칠 때 사용</p>
+        <div id="area1"></div>
+        <script>
+            $(function(){
+                var obj1 = {name:'홍길동', age:'20'};
+                var obj2 = {name:'김길동', hobby:['게임','영화']};
+                console.log(obj1);
+                console.log(obj2);
+                var str = obj1.name+" / "+obj1.age;
+
+                // 객체에 속성 추가
+                $.extend(obj1,{job:'학생'});
+                str += " / "+obj1.job;
+                console.log(obj1);
+                $('#area1').text(str);
+
+                // 두 객체를 하나로 합칠 때 사용
+                    // 중복되는 객체의 속성은 나중의 것으로 덮어 씀
+                var obj3 = $.extend(obj1,obj2);
+                console.log(obj3);
+
+            });
+        </script>
+        <hr>
+        
+        <h3>noConflict() 메소드</h3>
+        <p>다른 라이브러리나 다른 버전의 JQuery와 '$'의 충돌 방지를 위해 사용됨</p>
+        <h1 id='test'>noConflict() 테스트</h1>
+        <script>
+            var jq = $.noConflict();
+            jq(function(){
+                jq('#test').css('color','red');
+            });
+        </script>
+    </body>
+</html>
+
+
+
+속성 설정
+
+*jQuery 속성
+- attr()
+선택자에 의해 선택된 요소에 속성 값 확인 및 변경하는 메소드
+
+$('요소 명').attr('속성 명'); : 속성 명의 속성 값 리턴
+$('요소 명').attr('속성 명', '속성 값'); : 선택자의 속성과 속성 값 추가
+$('요소 명').attr('속성 명', function(index, value){}); : index : 선택된 요소의 index 값, value : 현재 값
+$('요소 명').attr({속성 명:'속성 값', 속성 명:'속성 값' ....}); : 다중으로 속성 값 설정 시 사용, 객체 사용 가능
+
+- removeAttr()
+선택자에 의해 선택된 요소에 속성을 제거하는 메소드
+
+$('요소 명').removeAttr('속성 명');
+(속성 명의 속성 제거, 여러 개일 경우 띄어쓰기 사용)
+
+
+- css()
+선택자에 의해 선택된 요소의 속성 값을 가져오거나 설정하는 메소드
+(단출속성설정(ex.border, background) 제대로 지원 않고 브라우저 별 상이)
+
+$('요소 명').css('속성 명'); : 속성 명의 속성 값 리턴
+$('요소 명').css('속성 명', '속성 값'); : 속성 명의 속성 값 설정
+$('요소 명').css('속성 명',function(index, 현재값){}); : 함수에서 리턴 되는 값으로 속성 설정
+$('요소 명').css({오브젝트}); : 오브젝트에서 설정한 다중 속성 설정
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>속성 메소드</title>
+        <!-- JQuery 연결-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="crossorigin="anonymous"></script>
+        <style>
+            .first { color : red; }
+            .second { color : blue; }
+            .third { color : orange; }
+        </style>
+    </head>
+    <body>
+        <h1>속성 메소드</h1>
+        <hr>
+        <h3>attr() 메소드</h3>
+        <p>문서 객체의 특정 속성값을 알아내거나 속성을 추가할 때 사용</p>
+        <img src="../images/city1.PNG" width="400px" height="300px">
+        <script>
+            $(function(){
+                // 속성명에 해당하는 속성값을 리턴
+                var img = $('img').attr('src');  // img 속성중에 경로를 알아와줘
+                console.log('사진 경로 : '+img);
+
+                // 속성명에 해당하는 속성값 변경
+                $('img').attr('src','../images/flower2.PNG'); 
+
+                // 함수를 통해 인덱스와 value를 활용
+                $('img').attr('src',function(index,value){
+                    console.log(index,value);
+                });
+
+                // 객체를 통해 여러 속성을 설정
+                $('img').attr({'width':'100px','height':'50px'});
+
+                // 객체의 속성을 제거
+                $('img').removeAttr('width').removeAttr('height');
+            })
+        </script>
+        <hr>
+
+        <h3>css() 메소드</h3>
+        <p>문서 객체의 스타일을 검사하거나 변경할 때 사용</p>
+        <h1 class="first">test-0</h1>
+        <h1 class="second">test-1</h1>
+        <h1 class="third">test-2</h1>
+        <script>
+            $(function(){
+                // 속성명에 해당하는 속성값을 리턴
+                var color = $('.first').css('color');
+                console.log(color);
+
+                // 속성명에 해당하는 속성 값 변경
+                $('.first').css('color','green');
+
+                // 함수를 통해 인덱스와 value를 활용
+                $('h1').css('color',function(index,value){
+                    console.log(index,value);
+                });
+
+                // 객체를 통해 여러 속성을 설정
+                $('.first').css({'font-size':'2em','background':'orange'}); 
+                
+                // 속성 제거
+                $('.first').css('color','inherit'); // 부모 것을 따라가겠다
+            });
+        </script>
+    </body>
+</html>
+
+
+
+content 설정
+* jQuery content
+
+- html()
+html전체
+
+선택된 요소의 content 영역(innerHTML/텍스트노드) 리턴하고
+설정하는 메소드(html태그를 태그로 인식)
+리턴 시 첫 번째 요소 텍스트 노드 리턴, 전체 요소 리턴 시 함수 사용
+
+
+$('요소 명').html(); : 선택된 요소의 첫 번째 텍스트 노드 리턴
+$('요소 명').html('텍스트 노드 내용'); : 선택된 요소의 text노드 내용 대입
+$('요소 명').html(function(index, 현재 값){});
+
+
+- text()
+선택된 요소의 content영역(innerHTML/텍스트노드) 리턴하고
+설정하는 메소드(html태그를 태그로 인식 불가)
+리턴 시 전체 요소 텍스트 노드 리턴
+
+$('요소 명').text(); : 선택된 요소의 모든 텍스트 노드 리턴
+$('요소 명').text('텍스트 노드 내용'); : 선택된 요소의 text노드 내용 대입
+$('요소 명').text(function(index, 현재 값){});
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Content 메소드</title>
+        <!-- JQuery 연결-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <h1>Content 메소드</h1>
+        <hr>
+        <h3>html() 메소드</h3>
+        <h1 id='test1'><a>네이버로 이동</a></h1>
+        <h1 id='test2'></h1>
+        <script>
+            $(function(){
+                var temp = $('#test1').html();
+                console.log(temp); // <a>네이버로 이동</a> 태그부터 다 가져옴
+
+                $('#test2').html(temp); // html 추가하겠다.
+
+                $('#test2').children('a').attr('href','http://www.naver.com');
+            });
+        </script>
+        <br>
+        <div class="test"></div>
+        <div class="test"></div>
+        <div class="test"></div>
+        <script>
+            $(function(){
+                $('.test').html(function(index,html){
+                    $(this).html("<h1>test"+index+"</h1>");
+                    console.log(index,html);
+                    $(this).html(function(index,html){
+                    console.log(index,html);
+                    });
+                });
+            });
+        </script>
+        <hr>
+
+        <h3>text() 메소드</h3>
+        <h1 id='test3'><a>구글로 이동</a></h1>
+        <h1 id='test4'></h1>
+        <script>
+            $(function(){
+                var temp = $('#test3').text(); 
+                console.log(temp); // 구글로 이동, 태그 제외하고 글자만 가져옴
+                $('#test4').text(temp); // 구글로 이동이라고 들어가긴 했지만 a태그는 안들어갔다.
+            });
+        </script>
+        <div class="test2"></div>
+        <div class="test2"></div>
+        <div class="test2"></div>
+        <script>
+            $(function(){
+                $('.test2').text(function(index,text){
+                    $(this).text("<h1>test"+index+"</h1>"); //내거에 텍스트를 넣어줌, 글자 자체로 나옴
+                    $(this).text(function(index,text){
+                        console.log(text);
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
+
+
+
+객체 생성 및 제거
+* jQuery 객체 생성
+
+- 문서 객체 생성
+html 태그 : 직접 html 구문을 문자열로 작성
+예) '<p>직접 생성하는 방식</p>'
+jQuery 방식 : jQuery 객체 이용 구문작성
+$(생성태그).css() | html() | text() | attr() 사용하여 생성
+DOM 방식 : 
+document.createElement('태그명').innerHTML('텍스트노드내용');
+document.createElement('태그명').setAttribute('속성명','속성값');
+
+
+- html 내부에 생성한 요소 추가
+이미 만들어져있는 것에 추가를 하고 싶을 때
+
+$('s').append(생성구문)
+$('s').append(function([n],[html]){ })
+
+$('s').after(생성구문)
+$('s').after(function([n],[html]){ })
+
+$('s').prepend(생성구문)
+$('s').prepend(function([n],[html]){ })
+
+$('s').before(생성구문)
+$('s').before(function([n],[html]){ })
+
+-> 생성된 요소를 선택자 뒤에 추가
+함수의 리턴 값을 선택자 뒤에 추가
+n : 선택된 요소 set의 인덱스 번호
+html : 현재 선택된 요소
+
+
+$('생성구문|태그명').appendTo('s')
+$('생성구문|태그명').insertAfterTo('s')
+$('생성구문|태그명').prependTo('s')
+$('생성구문|태그명').insertBeforeTo('s')
+
+-> 선택자에 생성된 요소나 태그를 뒤에 추가
+만일 추가되는 태그명이 문서에 있으면 위치를 변경시킴(이동)
+
+
+* jQuery 객체 복제
+- clone()
+객체를 복제하고 싶어
+html 내부에 있는 요소를 복사하는 메소드
+
+$('태그 명').clone([true|false]).appendTo('추가될 위치');
+태그 명의 태그를 복사하여 추가될 위치에 넣으며
+인자 값은 이벤트 핸들러까지 복사할지 여부를 묻는 것
+
+
+* jQuery 객체 제거
+- html 내부에 요소 객체 제거
+
+메소드
+$('s[,s...]').remove(['s']);
+문서 내에 선택자 제거 후 삭제된 요소 리턴
+인자 값을 기준으로 삭제 가능
+이벤트 핸들러, 데이터까지 모두 삭제
+
+$('s').detach();
+문서 내에 선택자 제거 후 삭제된 요소 리턴
+이벤트 핸들러, 데이터는 삭제 안 함
+값을 리턴 받아 나중에 활용 가능
+
+$('s').empty();
+문서 내에 선택자 제거 후 삭제된 요소 리턴
+선택자 자신과 속성은 삭제 안하고 내용만 삭제 
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>객체 생성 및 제거</title>
+        <!-- JQuery 연결-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="crossorigin="anonymous"></script>
+        <style>
+            .item {
+                width : 200px;
+                height : 200px;
+                display : inline-block;
+                margin : 5px;
+            }
+            #item1 {
+                background: yellowgreen;
+            }
+            #item2 {
+                background: cyan;
+            }
+            #item3 {
+                background: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>객체 생성 및 제거</h1>
+        <hr>
+        <h3>삽입 메소드 part1</h3>
+        <p>
+           $(A).appendTo(B) : A를 B의 요소 내 뒷부분에 추가 <br>
+           $(A).prependTo(B) : A를 B의 요소 내 앞부분에 추가 <br>
+           $(A).insertAfter(B) : A를 B의 요소 뒤에 추가 <br>
+           $(A).insertBefore(B) : A를 B의 요소 앞에 추가 
+        </p>
+        <h1 id='test1'><label>test1</label></h1>
+        <h1 id='test2'><label>test2</label></h1>
+        <h1 id='test3'><label>test3</label></h1>
+        <h1 id='test4'><label>test4</label></h1>
+        <script>
+            $(function(){
+                $('<label>추가테스트1</label>').appendTo($('#test1')); // 아이디가 test1인거 뒤에 추가
+                $('<label>추가테스트2</label>').prependTo($('#test2')); // 아이디가 test2인거 앞에 추가
+                $('<label>추가테스트3</label>').insertAfter($('#test3'));
+                $('<label>추가테스트4</label>').insertBefore($('#test4'));
+            });
+        </script>
+        <hr>
+
+        <h3>삽입메소드 part2</h3>
+        <p>
+            $(A).append(B) : B를 A의 요소 내 뒷부분에 추가 <br>
+            $(A).prepend(B) : B를 A의 요소 내 앞부분에 추가 <br>
+            $(A).after(B) : B를 A의 요소 뒤에 추가 <br>
+            $(A).before(B) : B를 A의 요소 앞에 추가 
+        </p>
+        <h1 id='test5'><label>test5</label></h1>
+        <h1 id='test6'><label>test6</label></h1>
+        <h1 id='test7'><label>test7</label></h1>
+        <h1 id='test8'><label>test8</label></h1>
+        <script>
+            $('#test5').append("<label>추가테스트5</label>");
+            $('#test6').prepend("<label>추가테스트6</label>");
+            $('#test7').after("<label>추가테스트7</label>");
+            $('#test8').before("<label>추가테스트8</label>");
+        </script>
+        <hr>
+
+        <h3>객체 복사와 제거 메소드</h3>
+        <p>
+            clone() : html 내부에 있는 요소를 복사하는 메소드<br>
+            remove() : 요소를 삭제하는 메소드(이벤트, 데이터까지 모두 삭제)<br>
+            detach() : 요소를 삭제하는 메소드(이벤트, 데이터는 삭제 안함)<br>
+            empty() : 내용만 삭제하는 메소드
+        </p>
+        <div id="clonetest">
+            <div id="item1" class='item'>
+                <button class='copy'>복사하기</button>
+                <button class='delete'>삭제하기</button>
+            </div>
+            <div id="item2" class='item'>
+                <button class='copy'>복사하기</button>
+                <button class='delete'>삭제하기</button>
+            </div>
+            <div id="item3" class='item'>
+                <button class='copy'>복사하기</button>
+                <button class='delete'>삭제하기</button>
+            </div>
+        </div>
+        <div id="result"></div>
+        <script>
+            $(function(){
+                // 복사하기
+                $('.copy').click(function(){
+                    $(this).parent().clone(true).appendTo($('#result')); // true,false = 이벤트핸들러까지 복사할거임? (click했을때 뒤에 function)
+                });
+
+                // 삭제하기
+                $('.delete').click(function(){
+                    // $(this).parent().remove(); // 요소, 이벤트, 데이터 삭제
+                    // $(this).parent().detach(); // 요소 삭제 (이벤트, 데이터는 삭제 안함 요소가 삭제돼서 눈으로는 안보임)
+                    $(this).parent().empty(); //요소 삭제 안하고 안에 내용만 삭제
+                });
+            });
+        </script>
+    </body>
+</html>
+
+
+--------------------------------------------------------------------------------------------------------
+
+이벤트
+
+jQuery 이벤트 객체
+- event 객체 속성 값
+event라는 객체가 별도로 있음
+속성
+event.currentTarget : 이벤트 발생한 bubbling 범위내 이벤트 핸들러의 this 와 같은 값을 가짐
+event.data : 이벤트 핸들러로부터 받아오는 값
+event.deleteTarget : 현재 호출된 이벤트핸들러에 연결된 객체 리턴
+event.namespace : 사용자지정 이벤트명 리턴
+event.pageX : 왼쪽기준 마우스위치 리턴
+event.pageY : 위쪽기준 마우스위치 리턴
+event.relatedTarget : 마우스가 요소에 들어오거나 나오는 요소 리턴
+event.result : 이벤트핸들러가 반환한 값을 보관
+event.target : 이벤트가 발생한 요소 리턴
+event.timestamp : 이벤트가 발생한 시간 : 이벤트가 발생한 시간, 밀리세컨초로 리턴
+event.type : 발생한 이벤트를 리턴 : 발생한 이벤트를 리턴
+event.which : 키/마우스를 눌렀을 때 그 키의 정수 값 리턴
+
+
+- event 객체 메소드
+메소드
+event.isDefaultPrevented() : preventDefault()가 호출되었는지 확인
+event.isImmediatePropagationStopped() : stopImmediatePropadation()이 호출되었는지 확인
+event.isPropagationStopped() : stopPropagation() 호출됐는지 확인
+event.preventDefault() : 기본 이벤트 발생 방지
+event.isImmediatePropagation() : 실행된 한 개 이벤트 제외하고 나머지는 동일한 이벤트 중단
+event.stopPropagation() : bubbling을 막는 메소드
+
+* jQuery 이벤트 연결
+- 이벤트 연결 메소드
+요소 객체에 이벤트 발생 시 연결된 이벤트 핸들러 지정하는 메소드
+
+메소드
+$('s').bind('이벤트명 [이벤트명]', function(){}) : 지정 이벤트에 이벤트 핸들러 지정 ( 다수 이벤트 지정 시 띄어쓰기로 구분 )
+ex. 클릭했을 때 뭘 하겠다.
+
+$('s').bind('이벤트명 [이벤트명]',{객체}, function(){}) : 이벤트처리 객체를 인자로 넣어서 처리 event객체 data에 들어감
+
+on은 bind와 역할이 같음 
+$('s').on('이벤트명 [,이벤트명]', function(){}) : 지정 이벤트에 이벤트 핸들러 지정
+$('s').on({ 객체 }) : 이벤트 처리 객체를 인자로 넣어서 처리 event객체 data에 들어감
+$('s').on('이벤트', '선택자', function(){}) : 선택된 요소 중 새로 동적으로 생성되는 선택자에 이벤트를 적용 동적적용
+bind메소드는 3.0버전부터 사용하지 않으니 on메소드 사용 권고
+
+- one()
+이벤트를 연결하여 한 번만 실행하는 메소드
+$('s').one('이벤트명 [이벤트명]', '핸들러') : 
+핸들러에 있는 기능을 한 번만 실행
+이벤트 명을 다수로 설정하면 각 이벤트 별 한 번씩만 실행
+
+
+- 간단한 연결 이벤트
+$('s').method(function(event){});
+
+- hover()
+mouseenter 이벤트와 mouseleave 이벤트를 동시에 연결
+만일 한 개의 이벤트 핸들러가 설정되면 두 이벤트 모두 작동
+이벤트 발생 객체는 함수에서 this로 호출 가능
+
+$('s').hover('function(){}, function(){}');
+첫 번째 함수가 mouseenter에서 작동, 두 번째 함수가 mouseleave에서 작동
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>이벤트 연결 메소드</title>
+        <!-- JQuery 연결-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="crossorigin="anonymous"></script>
+        <style>
+            .outer{
+                width: 200px;
+                height: 200px;
+                background: orange;
+                padding : 50px;
+            }
+            .inner{
+                width: 100%;
+                height : 100%;
+                background: red;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>이벤트 연결 메소드</h1>
+        <hr>
+        <h3>mouseover(), mouseenter()</h3>
+        <div class="outer">
+            <div class="inner"></div>
+        </div>
+        <script>
+            $(function(){
+                $('.outer').mouseover(function(){
+                    console.log("OVER!");
+                }); 
+                $('.outer').mouseenter(function(){
+                    console.log("ENTER!");
+                });
+            });
+        </script>
+        <hr>
+        
+        <h3>hover() 메소드</h3>
+        <p>mouseenter와 mouseleave를 동시에 사용하는 효과</p>
+        <h1 id="test1">hover테스트</h1>
+        <script>
+            $('#test1').hover(function(){ // 마우스 올라갔을 때
+                $(this).css({'background':'black','color':'white'});
+            },function(){ // 마우스 내려갔을 때
+                $(this).css({'background':'white','color':'black'});
+            })
+            
+        </script>
+    </body>
+</html>
