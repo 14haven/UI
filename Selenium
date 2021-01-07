@@ -1,0 +1,784 @@
+package app.uitest1.ex1;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Example01 {
+	public static void main(String[] args) {
+		// *** 크롬드라이버 위치 지정 - 필수코드  
+		System.setProperty("webdriver.chrome.driver", 
+						"C:/selenium/chromedriver.exe");
+		
+		WebDriver driver = new ChromeDriver();
+		// 브라우저가 열림.
+		
+		// 브라우저 첫 주소 작성
+		// - get() : 브라우저 열기
+		// - close() : 닫기
+		
+		driver.get("https://naver.com");
+		
+		//driver.close();
+		// 원래는 테스트 종료 후 꼭 close()를 작성해 주어야 하지만
+		// 브라우저 창이 열리자 마자 닫혀서 정상 동작 확인 어려워 
+		// 닫히는게 확인되면 주석처리
+
+	}
+
+
+
+
+package app.uitest1.ex2;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Example02_id {
+	// 요소의 아이디 속성 이용하여 원하는 위치 찾기
+	// 네이버에 접속해서 검색에 입력하고 찾기 버튼 클릭하는 예제
+	
+	public static void main(String[] args) {
+		// *** 크롬드라이버 위치 지정 - 필수코드  
+		System.setProperty("webdriver.chrome.driver", 
+						"C:/selenium/chromedriver.exe");
+		
+		WebDriver driver = new ChromeDriver();
+		
+		// 브라우저 첫 주소 작성
+		driver.get("https://www.naver.com");
+		
+		// 아이디를 이용하여 찾는 경우
+		// findElement(By.id("아이디"));
+		// 네이버 검색창의 아이디 : query
+		WebElement inputSearch = driver.findElement(By.id("query"));
+		
+		System.out.println("inputSearch : " + inputSearch);
+		
+		// 찾은 검색창에 검색하고자 하는 값을 전
+		inputSearch.sendKeys("KH정보교육원");
+		
+		// 검색 버튼 찾기
+		// 네이버 검색 버튼 아이디 : search_btn
+		WebElement buttonSearch = driver.findElement(By.id("search_btn"));
+		
+		// 검색 버튼 클릭
+		buttonSearch.click();
+		
+		//driver.close();//
+
+
+
+package app.uitest1.ex3.google;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Google_ClassName {
+	// 요소의 클래스 속성을 이용하여 구글 검색하기
+	public static void main(String[] args) {
+		//크롬드라이버 위치 지정 - 필수코드  
+		System.setProperty("webdriver.chrome.driver", 
+				"C:/selenium/chromedriver.exe");
+		
+		WebDriver driver = new ChromeDriver();
+		
+		//브라우저 첫 주소 작성 - get() 시작, close()닫는다.
+	    driver.get("https://www.google.com");
+	    	    
+	    // 검색창의 클래스 속성 값을 이용하여 찾기
+		WebElement inputSearch = 
+				driver.findElement(By.className("gLFyf"));
+		
+
+		inputSearch.sendKeys("KH정보교육원");
+		inputSearch.submit();
+	
+		
+	}
+
+
+
+package app.uitest1.ex3.google;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Google_CssSelector {
+	// CSS의 선택자 문법을 이용하여
+	// 구글에서 KH정보교육원 검색하기
+	
+	public static void main(String[] args) {
+		//크롬드라이버 위치 지정 - 필수코드  
+		System.setProperty("webdriver.chrome.driver", 
+				"C:/selenium/chromedriver.exe");
+	    WebDriver driver = new ChromeDriver();
+
+	    //브라우저 첫 주소 작성 - get() 시작, close()닫는다.
+	    driver.get("https://www.google.com");
+	    
+	    //검색어 입력창 찾기
+	    //클래스가 여러개인 경우 이와 같이 표현
+        //cssSelector(se) 사용함.
+	    String se = ".gLFyf.gsfi";//클래스가 여러개인 경우 이와 같이 표현
+	                              //cssSelector(se) 사용함.
+	    se = "#tsf > div:nth-child(2) > div > div.RNNXgb > div > div.a4bIc > input";
+		WebElement btns = 
+				driver.findElement(By.cssSelector(se));
+		
+        btns.sendKeys("KH정보교육원");
+        btns.submit();
+       		
+		// driver.close();//꼭 해주어야 한다.
+
+	}
+
+}
+
+
+		
+
+package app.uitest1.ex3.naver;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Naver_ClassName {
+	public static void main(String[] args) {
+		// 클래스 속성을 이용하여 네이버 로그인창 들어가기
+		
+		//크롬드라이버 위치 지정 - 필수코드  
+		System.setProperty("webdriver.chrome.driver", 
+				"C:/selenium/chromedriver.exe");
+	    WebDriver driver = new ChromeDriver();
+	    
+	    driver.get("https://naver.com");
+	    
+		List<WebElement> btns = driver.findElements(By.className("link_login"));
+
+		// 몇개의 클래스 선택자가 있는지 확인
+		System.out.println(btns.size());
+
+		// 선택자가 한개라서 0번째 클릭
+		btns.get(0).click();
+
+		// driver.close();//꼭 해주어야 한다.
+	}
+}
+
+
+
+
+package app.uitest1.ex3.naver;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Naver_CssSelector1 {
+	public static void main(String[] args) {
+		// CSS 선택자를 이용하여 네이버 로그인창 들어가기
+		
+		System.setProperty("webdriver.chrome.driver", 
+				"C:/selenium/chromedriver.exe");
+	    WebDriver driver = new ChromeDriver();
+	    
+	    driver.get("https://naver.com");
+	    
+	    //로그인의 anchor태그 css선택자 찾아봅니다.	
+	    List<WebElement> btns
+	    	= driver.findElements(By.cssSelector("a[class='link_login']"));
+	    											// CSS 속성 선택자
+	    // 개수 확인
+	    System.out.println(btns.size());
+	    
+	    if(btns.size() == 1) {
+	    	btns.get(0).click();
+	    }
+	    
+	    //driver.close();
+	}
+}
+
+
+
+
+package app.uitest1.ex3.naver;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Naver_CssSelector2 {
+	public static void main(String[] args) {
+		// CSS 선택자를 이용하여 네이버 로그인창 들어가기2
+		
+		// 크롬 드라이버 위치 지정 - 필수 코드
+		System.setProperty("webdriver.chrome.driver", 
+				"C:/selenium/chromedriver.exe");
+		
+	    WebDriver driver = new ChromeDriver();
+	    
+	    // 브라우저 첫 주소 작성
+	    driver.get("https://naver.com");
+	    
+		// 로그인의 anchor태그 css선택자 찾아봅니다.
+	    // chrome 개발자 도구 -> Elements -> 원하는 요소 우클릭 -> copy -> selector 클릭
+		List<WebElement> btns = 
+				driver.findElements(By.cssSelector("#account > a"));
+												    // 자식 선택자
+		
+		
+		
+		System.out.println(btns.size());
+		
+		if(btns.size() == 1) {
+			// 선택자가 한개라서 0번째 클릭
+			btns.get(0).click();
+		}
+		
+		// driver.close();//꼭 해주어야 한다.
+	}
+}
+
+
+
+
+package app.uitest1.ex3.naver;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Naver_Xpath {
+	public static void main(String[] args) {
+		// xpath :  W3C의 표준으로 XML(Extensible Markup Language)
+		// 			문서의 구조를 통해 경로(Path)위에 지정한 구문을 사용하여 항목을 배치하고 
+		//			처리하는 방법을 기술하는 언어
+		
+		// 크롬 드라이버 위치 지정 - 필수 코드
+		System.setProperty("webdriver.chrome.driver", 
+				"C:/selenium/chromedriver.exe");
+		
+	    WebDriver driver = new ChromeDriver();
+	    
+	    // 브라우저 첫 주소 작성
+	    driver.get("https://naver.com");
+	    
+	    // xpath 선택자
+	    
+	    /* selector 쉽게 지정하는 방법
+	     	F12 
+			-> Elements탭에서 특정한 element 선택 
+			-> 마우스 우클릭
+			-> Copy
+			-> Copy selector(cssSelector사용)
+			   Copy XPath(xpath사용) 
+	     * */
+	    List<WebElement> btns
+	    	= driver.findElements(By.xpath("//*[@id=\"account\"]/a"));
+	    
+		System.out.println(btns.size());
+		
+		if(btns.size() == 1) {
+			// 선택자가 한개라서 0번째 클릭
+			btns.get(0).click();
+		}
+
+	}
+}
+
+
+
+
+package app.uitest1.ex4;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+//클래스를 찾는 예제 -> 로그인 화면에서 아이디와 비밀번호 입력 예제
+public class Example04_Login {
+
+	public static void main(String[] args) {
+		// 크롬드라이버 위치 지정 - 필수코드
+		System.setProperty("webdriver.chrome.driver", 
+				"C:/selenium/chromedriver.exe");
+		
+		WebDriver driver = new ChromeDriver();
+
+		// 브라우저 첫 주소 작성 - get() 시작, close()닫는다.
+		driver.get("http://www.naver.com");
+
+		// 클래스 이용하여 로그인 찾기
+		List<WebElement> btns = 
+				driver.findElements(By.className("link_login"));
+
+		// 몇개의 클래스 선택자가 있는지 확인
+		System.out.println(btns.size());
+
+		// 선택자가 한개라서 0번째 클릭
+		btns.get(0).click();
+		
+		//아이디와 비밀번호 엘리먼트 찾음
+		//<input type="text" id="id" name="id" accesskey="L" placeholder="아이디" class="int" maxlength="41" value="">
+		//<input type="password" id="pw" name="pw" placeholder="비밀번호" class="int" maxlength="16" onkeypress="capslockevt(event);getKeysv2();" onkeyup="checkShiftUp(event);" onkeydown="checkShiftDown(event);">
+		
+		// 아이디 입력란의 input 태그의 id값이 "id"로 되어져 있다.
+		WebElement inputId = driver.findElement(By.id("id"));
+		
+		// 암호 입력란의 input 태그의 id값이 "pw"로 되어져 있다.
+		WebElement inputPw = driver.findElement(By.id("pw"));
+		
+		inputId.sendKeys("test123");
+		inputPw.sendKeys("1q2w3e4r");
+		
+		// 로그인 버튼 클릭 (실존하는 아이디 비밀번호가 아니므로 입력 되는지만 확인)
+		//btns = driver.findElements(By.className("btn_global"));
+		//btns.get(0).click();
+		
+		/*
+		  아이디와 암호를 올바르게 입력을 했지만
+		 안전을 위해 비밀번호와 자동입력 방지문자를 입력해주세요. 
+		 이라는 말과 함께 로그인이 되지 않는다.
+		 네이버에서는 사람이 클릭하는 것이 아니라 셀레니움이 하고 있으면 
+		 동작 속도가 워낙에 빠르므로 기계가 하고 있다고 감지해서 
+		 로그인을 못하도록 막아버리고 있음.
+		 */
+		
+		// driver.close();// 실제로는 꼭 작성해야 한다.
+	}// end main()
+
+}// end class
+
+
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+/*
+JavaScriptExecutor란?
+JavaScriptExecutor는 Selenium테스트 코드를 작성할때 각종 요소의 조작, 데이터 가져오기등을 JavaScript를 통해서 실행할 수 있게 해주는 interface이다.
+JavaScript는 물론이거니와 JQuery를 사용할 수도 있습니다. 
+JavaScript에 능숙하면 WebDriver에서 기본적으로 제공하는 기능보다 JavaScriptExecutor를 사용하는 편이 더 유연한 코드작성을 가능하게 해준다
+
+https://blog.naver.com/rudnfskf2/221527177473
+*/
+
+
+//iframe안에 있는 객체에 대해서는 접근이 불가... switchTo()를 통해 frame을 이동시켜줘야 접근이 가능하다.
+public class IframeEx1 {
+
+	public static void main(String[] args) {
+		// 크롬드라이버 위치 지정 - 필수코드
+		System.setProperty("webdriver.chrome.driver", 
+				"C:/selenium/chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("http://192.168.10.78:8081/Selenium/exam1/iframeTest.html");
+		
+		// id 선택자를 이용하여 아이디, 비밀번호 요소 얻어오기
+		//WebElement inputId = driver.findElement(By.id("id"));
+		//WebElement inputPwd = driver.findElement(By.id("password"));
+		
+		// 현재 아이디로 찾는 경우 오류 발생합니다.
+		// 원인
+		// 1. 엘리먼트가 없는 경우 - iframe 안에서는 검색 못합니다.
+		// 2. 비동기로 화면이 만들어지는 상황
+
+		
+		//오류 해결 - parent를 iframe으로 변경한다.
+		// WebDriver.switchTo().frame("") : 지정한 틀(frame)으로 이동
+		driver.switchTo().frame("subIframe"); 
+		//아래 문장을 주석으로 처리하면 
+		//Element info: {Using=id, value=id} 오류발생
+		 WebElement inputId = driver.findElement(By.id("id"));
+		 WebElement inputPwd = driver.findElement(By.id("password"));
+		 inputId.sendKeys("test");
+		 inputPwd.sendKeys("test");
+		 
+		 //로그인 버튼 실행하는 방법
+		 //1.로그인 버튼 클릭(tagName)
+		 WebElement loginBtn = driver.findElement(By.tagName("button"));
+		 loginBtn.click();
+		 
+		 // 2. 자바스크립트 함수 fnLogin() 실행
+		 //JavascriptExecutor exe =(JavascriptExecutor)driver;
+		 //exe.executeScript("fnLogin()");
+		 
+		// driver.close();//꼭 해주어야 한다.
+	}// end main()
+
+}// end class
+
+
+
+
+package app.uitest1.ex5_iframe;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+//iframe + javascript함수를 이용하여 로그인
+public class IframeEx2 {
+
+	public static void main(String[] args) {
+		// 크롬드라이버 위치 지정 - 필수코드
+		System.setProperty("webdriver.chrome.driver", 
+				"C:/selenium/chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("http://192.168.10.78:8081/Selenium/exam1/iframeTest.html");
+		
+		// parent를 iframe으로 변경한다.
+		driver.switchTo().frame("subIframe"); 
+
+		 WebElement inputId = driver.findElement(By.id("id"));
+		 WebElement inputPwd = driver.findElement(By.id("password"));
+		 inputId.sendKeys("test");
+		 inputPwd.sendKeys("test");
+		 
+		 //로그인 버튼 실행하는 방법
+		 //1.로그인 버튼 클릭(tagName)
+		 //WebElement loginBtn = driver.findElement(By.tagName("button"));
+		 //loginBtn.click();
+		 
+		 // 2. 자바스크립트 함수 fnLogin() 실행
+		 
+		 /*
+			 JavaScriptExecutor란?
+			 JavaScriptExecutor는 Selenium테스트 코드를 작성할때 각종 요소의 조작, 데이터 가져오기등을 JavaScript를 통해서 실행할 수 있게 해주는 interface이다.
+			 JavaScript는 물론이거니와 JQuery를 사용할 수도 있습니다. 
+			 JavaScript에 능숙하면 WebDriver에서 기본적으로 제공하는 기능보다 JavaScriptExecutor를 사용하는 편이 더 유연한 코드작성을 가능하게 해준다
+	
+			 https://blog.naver.com/rudnfskf2/221527177473
+		 */
+		 
+		 
+		 JavascriptExecutor exe =(JavascriptExecutor)driver;
+		 
+		 // 로그인 버튼에 있는 클릭 함수 fnLogin() 호출
+		 exe.executeScript("fnLogin()");
+		 
+		 
+		// driver.close();//꼭 해주어야 한다.
+	}// end main()
+
+}// end class
+
+
+
+
+package app.uitest1.ex5_iframe;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+//프레임 전환과 페이지 내용 읽어오기
+public class IframeEx3 {
+
+	public static void main(String[] args) {
+		// 크롬드라이버 위치 지정 - 필수코드
+		System.setProperty("webdriver.chrome.driver", 
+				"C:/selenium/chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("http://192.168.10.78:8081/Selenium/exam1/iframeTest2.html");
+		
+		// parent를 iframe으로 변경한다.
+		driver.switchTo().frame("subIframe"); 
+
+		WebElement inputId = driver.findElement(By.id("id"));
+		WebElement inputPwd = driver.findElement(By.id("password"));
+		inputId.sendKeys("test");
+		inputPwd.sendKeys("test");
+		 
+		 
+		// 자바스크립트 함수 fnLogin() 실행
+		JavascriptExecutor exe =(JavascriptExecutor)driver;
+		exe.executeScript("fnLogin()");
+		 
+		 
+		 
+		// 검색하려는 프레임을 다시 부모 프레임으로 전환
+		driver.switchTo().parentFrame();
+		
+		// tagName을 이용하여 p태그 요소를 찾음
+		WebElement p_div = driver.findElement(By.tagName("p"));
+		
+		// 찾은 p태그의 내용 읽어오기
+		System.out.println(p_div.getText());
+		// driver.close();//꼭 해주어야 한다.
+	}// end main()
+
+}// end class
+
+
+
+
+package app.uitest1.ex5_iframe;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+//alert 대화상자 확인 버튼 누르기(자바스크립트 executor 사용)
+public class IframeEx4 {
+
+	public static void main(String[] args) {
+		// 크롬드라이버 위치 지정 - 필수코드
+		System.setProperty("webdriver.chrome.driver", 
+				"C:/selenium/chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("http://192.168.10.78:8081/Selenium/exam1/iframeTest2.html");
+		// 위 경로로 접속하여 로그인 성공 시 alert 창이 추가된걸 확인
+		
+		// parent를 iframe으로 변경한다.
+		driver.switchTo().frame("subIframe"); 
+
+		WebElement inputId = driver.findElement(By.id("id"));
+		WebElement inputPwd = driver.findElement(By.id("password"));
+		inputId.sendKeys("test");
+		inputPwd.sendKeys("test");
+		 
+		 
+		// 자바스크립트 함수 fnLogin() 실행
+		JavascriptExecutor exe =(JavascriptExecutor)driver;
+		exe.executeScript("fnLogin()");
+		 
+		 
+		// alert() 대화상자 확인 선택합니다.
+		//alert()대화상자가 실행되었을때 아래 문장을 안해주면 오류발생
+		driver.switchTo().alert().accept();
+		
+		 
+		// 검색하려는 프레임을 다시 부모 프레임으로 전환
+		driver.switchTo().parentFrame();
+		
+		// tagName을 이용하여 p태그 요소를 찾음
+		WebElement p_div = driver.findElement(By.tagName("p"));
+		
+		// 찾은 p태그의 내용 읽어오기
+		System.out.println(p_div.getText());
+		// driver.close();//꼭 해주어야 한다.
+	}// end main()
+
+}// end class
+
+
+
+
+package app.uitest1.ex7;
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Attribute {
+	public static void main(String[] args) {
+		// 속성명을 이용하여 값 얻어오기
+		
+		// 크롬드라이버 위치 지정 - 필수코드
+		System.setProperty("webdriver.chrome.driver", 
+				"C:/selenium/chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+
+		// 브라우저 첫 주소 작성 - get 시작, close()닫는다.
+		driver.get("http://192.168.10.47:8080/Selenium/exam1/attrTest.html");
+		
+		// xpath를 이용하여 meta태그 찾기
+		String selector ="/html/head/meta";
+		WebElement els = driver.findElement(By.xpath(selector));
+		
+		// charset 속성값 얻어오기
+		System.out.println(els.getAttribute("charset"));
+		
+		// css selector로 input 태그 값 얻어오기
+		selector="body > input[type=text]";
+		els = driver.findElement(By.cssSelector(selector));
+		System.out.println(els.getAttribute("value"));
+		
+		// tagName으로 내용 얻어오기
+		selector="div";
+		els = driver.findElement(By.tagName(selector));
+		System.out.println(els.getText());
+		
+		// driver.close();//꼭 해주어야 한다.
+	}
+}
+
+
+
+
+package app.uitest1.ex5_iframe;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+//alert 대화상자 확인 버튼 누르기(자바스크립트 executor 사용)
+public class IframeEx4 {
+
+	public static void main(String[] args) {
+		// 크롬드라이버 위치 지정 - 필수코드
+		System.setProperty("webdriver.chrome.driver", 
+				"C:/selenium/chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("http://192.168.10.78:8081/Selenium/exam1/iframeTest2.html");
+		// 위 경로로 접속하여 로그인 성공 시 alert 창이 추가된걸 확인
+		
+		// parent를 iframe으로 변경한다.
+		driver.switchTo().frame("subIframe"); 
+
+		WebElement inputId = driver.findElement(By.id("id"));
+		WebElement inputPwd = driver.findElement(By.id("password"));
+		inputId.sendKeys("test");
+		inputPwd.sendKeys("test");
+		 
+		 
+		// 자바스크립트 함수 fnLogin() 실행
+		JavascriptExecutor exe =(JavascriptExecutor)driver;
+		exe.executeScript("fnLogin()");
+		 
+		 
+		// alert() 대화상자 확인 선택합니다.
+		//alert()대화상자가 실행되었을때 아래 문장을 안해주면 오류발생
+		driver.switchTo().alert().accept();
+		
+		 
+		// 검색하려는 프레임을 다시 부모 프레임으로 전환
+		driver.switchTo().parentFrame();
+		
+		// tagName을 이용하여 p태그 요소를 찾음
+		WebElement p_div = driver.findElement(By.tagName("p"));
+		
+		// 찾은 p태그의 내용 읽어오기
+		System.out.println(p_div.getText());
+		// driver.close();//꼭 해주어야 한다.
+	}// end main()
+
+}// end class
+
+
+
+
+
+package app.uitest1.ex7;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Attribute2 {
+	public static void main(String[] args) {
+		// 크롬드라이버 위치 지정 - 필수코드
+		System.setProperty("webdriver.chrome.driver", 
+				"C:/selenium/chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+
+		// 브라우저 첫 주소 작성 - get 시작, close()닫는다.
+		driver.get("http://192.168.10.47:8080/Selenium/exam1/attrTest2.html");
+		
+		//속성을 찾습니다.
+		//String selector = "//meta[@charset]";
+		String selector ="/html/head/meta";
+		WebElement els = driver.findElement(By.xpath(selector));
+		System.out.println(els.getAttribute("charset"));
+		
+		selector="body > div > input[type=text]";
+		els = driver.findElement(By.cssSelector(selector));
+		System.out.println(els.getAttribute("value"));
+		
+		
+		selector="div";
+		els = driver.findElement(By.tagName(selector));
+		System.out.println(els.getText());
+		
+		selector="div";
+		els = driver.findElement(By.tagName(selector));
+		System.out.println(els.getAttribute("innerHTML"));
+		
+		selector="div";
+		els = driver.findElement(By.tagName(selector));
+		System.out.println(els.getAttribute("innerText"));
+	}
+}
+
+
+
+
+
+package app.uitest1.ex7;
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class SelectTest {
+
+	public static void main(String[] args) {
+		// input select 선택 방법
+		
+		// 크롬드라이버 위치 지정 - 필수코드
+		System.setProperty("webdriver.chrome.driver", 
+				"C:/selenium/chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("http://192.168.10.47:8080/Selenium/exam1/Test_Select.html");
+
+		Select inputAge = 
+				new Select(driver.findElement(By.id("age")));
+		
+		// ID를 이용해 페이지 화면에 보이는 값을 이용해 "20대"를 선택하세요.
+		inputAge.selectByVisibleText("20대");
+
+		//index번호로 2번째 항목을 선택
+		//inputAge.selectByIndex(2);
+		
+		//value 속성 값으로  선택
+		//inputAge.selectByValue("2");
+		
+		//driver.close(); // 반드시 닫아야 한다.
+	}// end main()
+
+}// end class
